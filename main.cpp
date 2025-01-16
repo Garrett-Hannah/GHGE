@@ -14,6 +14,8 @@
 
 #include "Tools/ObjFileReader.h"
 
+//Notes changes 
+
 GLfloat yCamRot = 0.0f;
 GLfloat dt = 0.0f;
 
