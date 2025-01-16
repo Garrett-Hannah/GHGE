@@ -6,22 +6,15 @@
 //to draw the mesh in 3D space.
 void Renderer::render(Mesh& mesh, Camera& camera)
 {
-<<<<<<< HEAD
-=======
 	//Get the view matrix, projection matrix.
->>>>>>> main
 	glm::mat4 view = camera.getViewMatrix();
-	glm::mat4 projection = camera.getProjectionMatrix(glm::radians(80.0f), (float)winWidth/winHeight, 0.1f, 500.0f);
 
-<<<<<<< HEAD
 	GLint winWidth, winHeight;
 
 	winWidth = ghge_window -> getWinWidth();
 	winHeight = ghge_window -> getWinHeight();
 
 	glm::mat4 projection = camera.getProjectionMatrix(glm::radians(80.0f), (float)winWidth/winHeight, 0.1f, 100.0f);
-=======
->>>>>>> main
 
 	//Apply model transforms.
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), mesh.modelPosition);
@@ -43,13 +36,9 @@ void Renderer::render(Mesh& mesh, Camera& camera)
 	}
 }
 
-<<<<<<< HEAD
 
-Renderer::Renderer(const GLuint &winWidth_,const GLuint &winHeight_)
-=======
 //Simply initiailze the window width/height.
-Renderer::Renderer(GLuint winWidth_, GLuint winHeight_)
->>>>>>> main
+Renderer::Renderer(const GLuint &winWidth_, const GLuint &winHeight_)
 {
     ghge_window = new Window(winWidth_, winHeight_);
 
@@ -84,19 +73,11 @@ void Renderer::cleanup()
     SDL_Quit();
 }
 
-<<<<<<< HEAD
-=======
 //Initialzie SDL for video.
 void Renderer::init()
 {
+    ghge_window -> initWindow();
 
-
-
-    // Step 1: Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        std::cerr << "Failed to initialize SDL: " << SDL_GetError() << std::endl;
-        return;
-    }
 
     // Step 2: Set OpenGL version and profile (e.g., OpenGL 3.3 Core)
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
@@ -108,34 +89,6 @@ void Renderer::init()
 
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     // Step 3: Create an SDL window with OpenGL support
-    window = SDL_CreateWindow("OpenGL Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-			      winWidth, winHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
-    if (!window) {
-        std::cerr << "Failed to create SDL window: " << SDL_GetError() << std::endl;
-        SDL_Quit();
-        return;
-    }
-
-    // Step 4: Create an OpenGL context associated with the SDL window
-    context = SDL_GL_CreateContext(window);
-    if (!context) {
-        std::cerr << "Failed to create OpenGL context: " << SDL_GetError() << std::endl;
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return;
-    }
-
-    // Step 5: Initialize GLEW (after creating the OpenGL context)
-    glewExperimental = GL_TRUE;  // Enable modern OpenGL features
-    GLenum glewStatus = glewInit();
-    if (glewStatus != GLEW_OK) {
-        std::cerr << "Failed to initialize GLEW: " << glewGetErrorString(glewStatus) << std::endl;
-        SDL_GL_DeleteContext(context);
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return;
-    }
-
     // Check OpenGL and GLEW versions
     std::cout << "OpenGL version: " << glGetString(GL_VERSION) << std::endl;
     std::cout << "GLEW version: " << glewGetString(GLEW_VERSION) << std::endl;
@@ -159,7 +112,6 @@ void Renderer::init()
 
     return;
 }
->>>>>>> main
 
 //swap the window.
 void Renderer::swapwindow()

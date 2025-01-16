@@ -26,7 +26,6 @@
 
 #include "../src/Mesh.h"
 
-
 class ObjReader
 {
 	private:

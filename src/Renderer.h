@@ -12,25 +12,20 @@ class Renderer {
 
 		Window* ghge_window;
 		Shader* shader;
-<<<<<<< HEAD
 		
 		void (*backgroundDraw)();
 	
-=======
         	GLuint winWidth, winHeight;
->>>>>>> main
 	public:
 		Renderer(const GLuint &winWidth, const GLuint &winHeight);
 		void render(Mesh& mesh, Camera& camera);
 		void cleanup();
 		void swapwindow();
 		void setShader(Shader *shader_);
-<<<<<<< HEAD
-		
+	    void init();
+
 		void setBGdrawMethod(void (*ptr)());
-=======
-		SDL_Window* getWindow(){ return window;};		
->>>>>>> main
+		SDL_Window* getWindow(){ return ghge_window -> getSdlWindow();};		
 };
 
 #endif
