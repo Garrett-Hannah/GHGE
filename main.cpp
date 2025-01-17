@@ -22,6 +22,7 @@ GLfloat camYaw = 0.0f;
 GLfloat camPitch = 0.0f;
 GLfloat dt = 0.0f;
 
+GLuint SCR_WIDTH, SCR_HEIGHT;
 
 bool addT = false;
 
@@ -125,11 +126,11 @@ glm::vec3 inputUpdate(Input &input)
 	    {
 		    translation += glm::vec3(-1.0f, 0.0f, 0.0f);
 	    }
-	    if (input.isKeyPressed( SDL_SCANCODE_E ))
+	    if (input.isKeyPressed( SDL_SCANCODE_SPACE ))
 	    {
 		    translation += glm::vec3(0.0f, 1.0f, 0.0f);
 	    }
-	    if (input.isKeyPressed( SDL_SCANCODE_Q ))
+	    if (input.isKeyPressed( SDL_SCANCODE_LSHIFT ))
 	    {
 		    translation += glm::vec3(0.0f, -1.0f, 0.0f);
 	    }
@@ -161,6 +162,31 @@ glm::vec3 inputUpdate(Input &input)
 	    return translation;
 }
 
+void setup_hdrFBO(GLuint &hdrFBO)
+{
+    // set up floating point framebuffer to render scene to
+    glGenFramebuffers(1, &hdrFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, hdrFBO);
+    unsigned int colorBuffers[2];
+    glGenTextures(2, colorBuffers);
+    for (unsigned int i = 0; i < 2; i++)
+    {
+        glBindTexture(GL_TEXTURE_2D, colorBuffers[i]);
+        glTexImage2D(
+            GL_TEXTURE_2D, 0, GL_RGBA16F, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGBA, GL_FLOAT, NULL
+        );
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        // attach texture to framebuffer
+        glFramebufferTexture2D(
+            GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i, GL_TEXTURE_2D, colorBuffers[i], 0
+        );
+    }
+}
+
+
 
 //This should be redone into something better.
 //I think an event queue would be interesting.
@@ -178,6 +204,7 @@ int main(int argc, char* argv[]) {
     
     //Initialize the renderer.
     Renderer renderer(w, h);
+
 
 	std::cout << "Initialzied!" << std::endl;
 
@@ -202,7 +229,7 @@ int main(int argc, char* argv[]) {
 
     
 
-	r.openObjFile("data/stanford-bunny.obj");
+	r.openObjFile("data/xyzrgb_dragon.obj");
 
 	r.writeToMeshBuffer();
 
@@ -219,7 +246,7 @@ int main(int argc, char* argv[]) {
 	shaders.push_back(new Shader("shaders/bgVshader.glsl", "shaders/bgFshader.glsl"));
 	
 
-    meshes[0] -> modelScale = glm::vec3(50.0f, 50.0f, 50.0f);
+    meshes[0] -> modelScale = glm::vec3(0.250f, 0.250f, 0.250f);
 	
     bgSetup();
 
@@ -241,6 +268,8 @@ int main(int argc, char* argv[]) {
 
 
 
+    unsigned int attachments[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
+    glDrawBuffers(2, attachments); 
 
 
 	Camera camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
