@@ -14,7 +14,8 @@ class Renderer {
 		Shader* shader;
 		
 		void (*backgroundDraw)();
-	
+	    
+
         	GLuint winWidth, winHeight;
 	public:
 		Renderer(const GLuint &winWidth, const GLuint &winHeight);

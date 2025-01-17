@@ -7,7 +7,6 @@
 #include <iostream>
 #include <cmath>
 
-
 #include "src/Renderer.h"
 #include "src/Mesh.h"
 #include "src/Camera.h"
@@ -16,12 +15,14 @@
 
 #include "Tools/ObjFileReader.h"
 
-//Notes changes 
 
+
+//Some temporary variables. this needs to be removed soon.
 GLfloat camYaw = 0.0f;
 GLfloat camPitch = 0.0f;
 GLfloat dt = 0.0f;
 
+//Screen width and height values. 
 GLuint SCR_WIDTH, SCR_HEIGHT;
 
 bool addT = false;
@@ -39,19 +40,20 @@ GLfloat verts[] =
 		1.0f, 1.0f,   0.90f, 0.90f, 0.995f
 };
 
-
-
-
+//This is the indices essentailly it draws in this order.
 GLuint inds[] = 
 {
 		0, 1, 2,
 		0, 2, 3	
 };
 
+//this is a VAO, for i think the backround value.
+//It shouldnt be a global variable.
 unsigned int VAO;
 
 void bgSetup()
 {
+    //Create unsigned ints
 	unsigned int VBO, EBO;
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
@@ -76,24 +78,17 @@ void bgSetup()
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
-
-
 	// Unbind VAO
 	glBindVertexArray(0);
 }
 
-
-
-float bgTime = 0.0f;
-
-//As of right now, this is not working. 
+//Overall i should be using maybe render layers
+//of some sorts. Until then the hard-coded background
+//remains. :(
 void bgDraw(Shader* shader)
 {
-
-	bgTime += 0.001f;
-
-	 glDisable(GL_DEPTH_TEST);
-    	glDepthMask(GL_FALSE);
+	glDisable(GL_DEPTH_TEST);
+    glDepthMask(GL_FALSE);
 
 	if(shader != nullptr)shader -> use();
 	else std::cout << "ERROR: SHADER NOT DEFINED" << std::endl;
@@ -103,10 +98,18 @@ void bgDraw(Shader* shader)
 	glDrawElements(GL_TRIANGLES, sizeof(inds) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
 	glDepthMask(GL_TRUE);
-    	glEnable(GL_DEPTH_TEST);
+    glEnable(GL_DEPTH_TEST);
 	glBindVertexArray(0);
 }
 
+//This should be implemented in the 
+//Engine class when that gets up and running. but oh well.
+
+//AS of right now, it just acts as a way to gets
+//some inputs and it returns a certain direction.
+//standard stuff really, 
+//w - forward
+//a - backwards, etc etc
 glm::vec3 inputUpdate(Input &input)
 {
     	glm::vec3 translation(0.0f);
@@ -162,6 +165,8 @@ glm::vec3 inputUpdate(Input &input)
 	    return translation;
 }
 
+//This here sets up the front buffer for post processing.
+//Again, this should be made into an easier thing.
 void setup_hdrFBO(GLuint &hdrFBO)
 {
     // set up floating point framebuffer to render scene to
@@ -186,13 +191,7 @@ void setup_hdrFBO(GLuint &hdrFBO)
     }
 }
 
-
-
-//This should be redone into something better.
-//I think an event queue would be interesting.
-//Or at minimum an array of active keys.
 int main(int argc, char* argv[]) {
-
 
     //Enter program
 	std::cout << "Program entered!" << std::endl;
@@ -205,145 +204,151 @@ int main(int argc, char* argv[]) {
     //Initialize the renderer.
     Renderer renderer(w, h);
 
+    
+	std::cout << "Renderer Initialzied!" << std::endl;
 
-	std::cout << "Initialzied!" << std::endl;
-
+    //As of right now, its just 
+    //Meshes and Shader referrences being stored.
+    //Its just better to have them in one spot. 
     std::vector<Shader*> shaders;
     std::vector<Mesh*> meshes;
 
     shaders.push_back(new Shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl"));
 
-	std::cout << "Shaders Created" << std::endl;
+	std::cout << "Shader Created" << std::endl;
 
 	renderer.setShader(shaders[0]);
 
-	std::cout << "Shader Set!" << std::endl;
+	std::cout << "Shader Set To Renderer." << std::endl;
 
-	
+	//Set clear colors, and make a vertices and indices.
+    //Buffer of sorts.
 
 	glClearColor(0.28f, 0.4f, 0.75f, 1.0f);
 	std::vector<Vertex> vertices;
 	std::vector<GLuint> indices;
 
-	ObjReader r = ObjReader();
 
-    
-
+    //Open up the file reader. Then store 
+    //The mesh and indices in this temporary vector.
+    //Overall this just puts it all together into the mesh.
+    //I think it can be shortened 
+    //by just returning the vert and index data 
+    //as a mesh to begin with?
+    ObjReader r = ObjReader();    
 	r.openObjFile("data/xyzrgb_dragon.obj");
-
 	r.writeToMeshBuffer();
-
 	vertices = r.verts;
 	indices = r.indicies;
 
+    //Push back a texture.
+    //I dont even want to know how this is going
+    //to be used. 
 	std::vector<Texture> textures;
 	textures.push_back({1, "texture"});
 
-	//mesh.calculateNormals();
+    //Creates a new mesh, with
+    //the mesh data from earlier
 	meshes.push_back(new Mesh(vertices, indices, textures));
-	
-	
-	shaders.push_back(new Shader("shaders/bgVshader.glsl", "shaders/bgFshader.glsl"));
-	
+
 
     meshes[0] -> modelScale = glm::vec3(0.250f, 0.250f, 0.250f);
 	
+	
+    //Push back shaders for background.
+    //Then setup the background vbo
+    shaders.push_back(new Shader("shaders/bgVshader.glsl", "shaders/bgFshader.glsl"));
     bgSetup();
 
+    //Here is just more meshes. 
+    //
+    //This one is just a simple plane.
     std::vector<Vertex> vertices2 = {
         {{-10.0f,  0.0f, 10.0f}, { 0.0f,  0.0,  0.0f}, {0.0f, 1.0f}}, // Top-left (Top face)
         {{ 10.0f,  0.0f, 10.0f}, { 0.0f,  0.0f,  0.0f}, {1.0f, 1.0f}}, // Top-right
         {{ -10.0f,  0.0f,  -10.0f}, { 0.0f,  0.0f,  0.0f}, {1.0f, 0.0f}}, // Bottom-right
         {{10.0f,  0.0f,  -10.0f}, { 0.0f,  0.0f,  0.0f}, {0.0f, 0.0f}}, // Bottom-left
     };
-
     std::vector<GLuint> indices2 = {
         0, 1, 2, 2, 1, 3
     };
-
-
-
-
     meshes.push_back( new Mesh( vertices2, indices2, textures ) );
 
-
-
-    unsigned int attachments[2] = { GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1 };
-    glDrawBuffers(2, attachments); 
-
-
-	Camera camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    //Here is the camera initialization.	
+    Camera camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 	glm::vec3 camPos = glm::vec3( -1.0f, 0.0f, 0.0f );
 
-
-	glm::vec3 translation( 0.0f, 0.0f, 0.0f );
-    	bool running = true;
-	 
+	glm::vec3 translation( 0.0f, 0.0f, 0.0f ); 	
     Input input;
 
-    while ( running ) {
+    
 
-	translation = glm::vec3( 0.0f );
-	SDL_Event event;
-        while ( SDL_PollEvent( &event ) )
-        {
-            if ( event.type == SDL_QUIT ) running = false;
-            if ( event.type == SDL_KEYDOWN || event.type == SDL_KEYUP ) 
-            {
-                input.updateKeys( &event );
-            }
-	}
-
-	translation = inputUpdate(input);
-	translation = translation * 0.25f;
-	
-	glm::quat rotationQuat = glm::angleAxis(camYaw, glm::vec3(0.0f, 1.0f, 0.0f));
-
-		translation = rotationQuat * translation;
-
-
-    	if(addT)dt += 0.01f;
-	glm::vec3 mPos = glm::vec3(std::sin(dt), std::cos(dt) * 3, 0.0f);
-
-	meshes[0] -> modelPosition = mPos;
-
-	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), translation);
-
-	// Apply the translation by multiplying the matrix and the vector
-	glm::vec4 translatedVec = translationMatrix * glm::vec4(camPos, 1.0f);
-
-	// If you need a glm::vec3 result (ignoring the w-component), you can convert it back:
-	camPos = glm::vec3(translatedVec);
-		// Render here
-
-
-	camera.setPosition( camPos );
-
-	camera.setTarget( camPos + glm::vec3(std::sin(camYaw), std::sin(camPitch), std::cos(camYaw)));
-
-
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
-	bgDraw(shaders[1]);
-	
-    GLenum error = glGetError();
-
-	while(error != GL_NO_ERROR)
-	{
-		std::cerr << "Opengl Error: " << error << std::endl;
-		error = glGetError();
-	}
-	
-    for(Mesh* mesh : meshes )
+    //The running bool just decides when to terminate the program.
+    bool running = true;
+    while ( running ) 
     {
-        renderer.render(*mesh, camera);
+        //This is the main structure of the actual gameloop.
+        //What it does is create an event, and see what has been pressed.
+        //Pretty much?
+        SDL_Event event;
+            while ( SDL_PollEvent( &event ) )
+            {
+                if ( event.type == SDL_QUIT ) running = false;
+                if ( event.type == SDL_KEYDOWN || event.type == SDL_KEYUP ) 
+                {
+                    input.updateKeys( &event );
+                }
+        }
+
+        //Then we update based on our input.
+        translation = inputUpdate(input);
+        translation = translation * 0.25f;
+        
+        glm::quat rotationQuat = glm::angleAxis(camYaw, glm::vec3(0.0f, 1.0f, 0.0f));
+
+            translation = rotationQuat * translation;
+
+
+            if(addT)dt += 0.01f;
+        glm::vec3 mPos = glm::vec3(std::sin(dt), std::cos(dt) * 3, 0.0f);
+
+        meshes[0] -> modelPosition = mPos;
+
+        glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), translation);
+
+        // Apply the translation by multiplying the matrix and the vector
+        glm::vec4 translatedVec = translationMatrix * glm::vec4(camPos, 1.0f);
+
+        // If you need a glm::vec3 result (ignoring the w-component), you can convert it back:
+        camPos = glm::vec3(translatedVec);
+            // Render here
+
+
+        camera.setPosition( camPos );
+
+        camera.setTarget( camPos + glm::vec3(std::sin(camYaw), std::sin(camPitch), std::cos(camYaw)));
+
+
+        //Clear the color bits.
+        glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+
+        //Draw the background.
+        bgDraw(shaders[1]);
+        
+        
+        //Final step. render the meshes.
+        for(Mesh* mesh : meshes )
+        {
+            renderer.render(*mesh, camera);
+        }
+
+        //Swap windows
+        renderer.swapwindow();  // Swap buffers
     }
 
-	renderer.swapwindow();  // Swap buffers
-    }
+        renderer.cleanup();
 
-    renderer.cleanup();
-
-    return 0;
+        return 0;
 }
