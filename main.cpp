@@ -12,11 +12,14 @@
 #include "src/Mesh.h"
 #include "src/Camera.h"
 
+#include "Engine/input.h"
+
 #include "Tools/ObjFileReader.h"
 
 //Notes changes 
 
-GLfloat yCamRot = 0.0f;
+GLfloat camYaw = 0.0f;
+GLfloat camPitch = 0.0f;
 GLfloat dt = 0.0f;
 
 
@@ -78,6 +81,8 @@ void bgSetup()
 	glBindVertexArray(0);
 }
 
+
+
 float bgTime = 0.0f;
 
 //As of right now, this is not working. 
@@ -101,51 +106,56 @@ void bgDraw(Shader* shader)
 	glBindVertexArray(0);
 }
 
-glm::vec3 inputUpdate(bool inputArr[])
+glm::vec3 inputUpdate(Input &input)
 {
-	glm::vec3 translation(0.0f);
-	    if (inputArr[SDL_SCANCODE_W])
+    	glm::vec3 translation(0.0f);
+	    if (input.isKeyPressed( SDL_SCANCODE_W ))
 	    {
 		    translation += glm::vec3(0.0f, 0.0f, 1.0f);
 	    }
-	    if(inputArr[SDL_SCANCODE_A])
+	    if (input.isKeyPressed( SDL_SCANCODE_A ) )
 	    {
 		    translation += glm::vec3(1.0f, 0.0f, 0.0f);
 	    }
-	    if (inputArr[SDL_SCANCODE_S])
+	    if (input.isKeyPressed( SDL_SCANCODE_S ))
 	    {
 		    translation += glm::vec3(0.0f, 0.0f, -1.0f);
 	    }
-	    if(inputArr[SDL_SCANCODE_D])
+	    if (input.isKeyPressed( SDL_SCANCODE_D ))
 	    {
 		    translation += glm::vec3(-1.0f, 0.0f, 0.0f);
 	    }
-	    if (inputArr[SDL_SCANCODE_Q])
+	    if (input.isKeyPressed( SDL_SCANCODE_E ))
 	    {
 		    translation += glm::vec3(0.0f, 1.0f, 0.0f);
 	    }
-	    if(inputArr[SDL_SCANCODE_E])
+	    if (input.isKeyPressed( SDL_SCANCODE_Q ))
 	    {
 		    translation += glm::vec3(0.0f, -1.0f, 0.0f);
 	    }
 
-	    if(inputArr[SDL_SCANCODE_O])
+	    if (input.isKeyPressed( SDL_SCANCODE_O ))
 	    {
-		    yCamRot += 0.01f;
+		    camYaw += 0.01f;
 	    }
 
-	    if(inputArr[SDL_SCANCODE_P])
+	    if (input.isKeyPressed( SDL_SCANCODE_P ))
 	    {
-		    yCamRot -= 0.01f;
+		    camYaw -= 0.01f;
 	    }
 
-	    if(inputArr[SDL_SCANCODE_B])
+        if (input.isKeyPressed( SDL_SCANCODE_MINUS ))
+        {
+            camPitch -= 0.01f;
+        }
+        if (input.isKeyPressed( SDL_SCANCODE_EQUALS ))
+        {
+            camPitch += 0.01f;
+        }
+
+	    if (input.isKeyPressed( SDL_SCANCODE_T ))
 	    {
 		    addT = true;
-	    }
-	    if(!inputArr[SDL_SCANCODE_B])
-	    {
-		    addT = false;
 	    }
 
 	    return translation;
@@ -156,6 +166,7 @@ glm::vec3 inputUpdate(bool inputArr[])
 //I think an event queue would be interesting.
 //Or at minimum an array of active keys.
 int main(int argc, char* argv[]) {
+
 
     //Enter program
 	std::cout << "Program entered!" << std::endl;
@@ -239,30 +250,26 @@ int main(int argc, char* argv[]) {
 
 	glm::vec3 translation( 0.0f, 0.0f, 0.0f );
     	bool running = true;
-	
+	 
+    Input input;
 
-	bool keys[SDL_NUM_SCANCODES] = {false};
-while ( running ) {
+    while ( running ) {
 
 	translation = glm::vec3( 0.0f );
 	SDL_Event event;
         while ( SDL_PollEvent( &event ) )
         {
             if ( event.type == SDL_QUIT ) running = false;
-            if ( event.type == SDL_KEYDOWN ) 
+            if ( event.type == SDL_KEYDOWN || event.type == SDL_KEYUP ) 
             {
-                keys[event.key.keysym.scancode] = true;
-            }
-            else if ( event.type == SDL_KEYUP ) 
-            {
-                keys[event.key.keysym.scancode] = false;
+                input.updateKeys( &event );
             }
 	}
 
-	translation = inputUpdate(keys);
+	translation = inputUpdate(input);
 	translation = translation * 0.25f;
 	
-	glm::quat rotationQuat = glm::angleAxis(yCamRot, glm::vec3(0.0f, 1.0f, 0.0f));
+	glm::quat rotationQuat = glm::angleAxis(camYaw, glm::vec3(0.0f, 1.0f, 0.0f));
 
 		translation = rotationQuat * translation;
 
@@ -284,7 +291,7 @@ while ( running ) {
 
 	camera.setPosition( camPos );
 
-	camera.setTarget( camPos + glm::vec3(std::sin(yCamRot), 0, std::cos(yCamRot)));
+	camera.setTarget( camPos + glm::vec3(std::sin(camYaw), std::sin(camPitch), std::cos(camYaw)));
 
 
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
