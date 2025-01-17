@@ -151,27 +151,33 @@ glm::vec3 inputUpdate(bool inputArr[])
 	    return translation;
 }
 
+
 //This should be redone into something better.
 //I think an event queue would be interesting.
 //Or at minimum an array of active keys.
-
-
 int main(int argc, char* argv[]) {
 
-
+    //Enter program
 	std::cout << "Program entered!" << std::endl;
 
+    //Declare width and height values.
 	GLuint w, h;
     	w = 1600;
     	h = 1200;
-    	Renderer renderer(w, h);
+    
+    //Initialize the renderer.
+    Renderer renderer(w, h);
 
 	std::cout << "Initialzied!" << std::endl;
-	Shader* s = new Shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl");
-	
+
+    std::vector<Shader*> shaders;
+    std::vector<Mesh*> meshes;
+
+    shaders.push_back(new Shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl"));
+
 	std::cout << "Shaders Created" << std::endl;
 
-	renderer.setShader(s);
+	renderer.setShader(shaders[0]);
 
 	std::cout << "Shader Set!" << std::endl;
 
@@ -182,6 +188,9 @@ int main(int argc, char* argv[]) {
 	std::vector<GLuint> indices;
 
 	ObjReader r = ObjReader();
+
+    
+
 	r.openObjFile("data/stanford-bunny.obj");
 
 	r.writeToMeshBuffer();
@@ -193,12 +202,16 @@ int main(int argc, char* argv[]) {
 	textures.push_back({1, "texture"});
 
 	//mesh.calculateNormals();
-	Mesh mesh(vertices, indices, textures);
+	meshes.push_back(new Mesh(vertices, indices, textures));
 	
 	
-	Shader* shader = new Shader("shaders/bgVshader.glsl", "shaders/bgFshader.glsl");
-	mesh.modelScale = glm::vec3(50.0f, 50.0f, 50.0f);
-	bgSetup();
+	shaders.push_back(new Shader("shaders/bgVshader.glsl", "shaders/bgFshader.glsl"));
+	
+
+    meshes[0] -> modelScale = glm::vec3(50.0f, 50.0f, 50.0f);
+	
+    bgSetup();
+
     std::vector<Vertex> vertices2 = {
         {{-10.0f,  0.0f, 10.0f}, { 0.0f,  0.0,  0.0f}, {0.0f, 1.0f}}, // Top-left (Top face)
         {{ 10.0f,  0.0f, 10.0f}, { 0.0f,  0.0f,  0.0f}, {1.0f, 1.0f}}, // Top-right
@@ -213,8 +226,9 @@ int main(int argc, char* argv[]) {
 
 
 
-    	Mesh mesh2(vertices2, indices2, textures);
-	std::cout << std::cos(dt) << std::endl;
+    meshes.push_back( new Mesh( vertices2, indices2, textures ) );
+
+
 
 
 
@@ -256,7 +270,7 @@ while ( running ) {
     	if(addT)dt += 0.01f;
 	glm::vec3 mPos = glm::vec3(std::sin(dt), std::cos(dt) * 3, 0.0f);
 
-	mesh.modelPosition = mPos;
+	meshes[0] -> modelPosition = mPos;
 
 	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), translation);
 
@@ -272,19 +286,23 @@ while ( running ) {
 
 	camera.setTarget( camPos + glm::vec3(std::sin(yCamRot), 0, std::cos(yCamRot)));
 
-   	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-	bgDraw(shader);
-	GLenum error = glGetError();
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+	bgDraw(shaders[1]);
+	
+    GLenum error = glGetError();
 
 	while(error != GL_NO_ERROR)
 	{
 		std::cerr << "Opengl Error: " << error << std::endl;
 		error = glGetError();
 	}
-	renderer.render(mesh, camera);
-    	renderer.render(mesh2, camera);
-	//mesh.modelPosition = glm::translate(mesh.modelPosition, glm::vec3(0.1f, 0.0f, 0.0f));
+	
+    for(Mesh* mesh : meshes )
+    {
+        renderer.render(*mesh, camera);
+    }
 
 	renderer.swapwindow();  // Swap buffers
     }
