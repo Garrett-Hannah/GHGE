@@ -11,7 +11,8 @@
 #include "src/Mesh.h"
 #include "src/Camera.h"
 
-#include "Engine/input.h"
+#include "Engine/inputManager.h"
+#include "Engine/playerController.h"
 
 #include "Tools/ObjFileReader.h"
 
@@ -102,68 +103,6 @@ void bgDraw(Shader* shader)
 	glBindVertexArray(0);
 }
 
-//This should be implemented in the 
-//Engine class when that gets up and running. but oh well.
-
-//AS of right now, it just acts as a way to gets
-//some inputs and it returns a certain direction.
-//standard stuff really, 
-//w - forward
-//a - backwards, etc etc
-glm::vec3 inputUpdate(Input &input)
-{
-    	glm::vec3 translation(0.0f);
-	    if (input.isKeyPressed( SDL_SCANCODE_W ))
-	    {
-		    translation += glm::vec3(0.0f, 0.0f, 1.0f);
-	    }
-	    if (input.isKeyPressed( SDL_SCANCODE_A ) )
-	    {
-		    translation += glm::vec3(1.0f, 0.0f, 0.0f);
-	    }
-	    if (input.isKeyPressed( SDL_SCANCODE_S ))
-	    {
-		    translation += glm::vec3(0.0f, 0.0f, -1.0f);
-	    }
-	    if (input.isKeyPressed( SDL_SCANCODE_D ))
-	    {
-		    translation += glm::vec3(-1.0f, 0.0f, 0.0f);
-	    }
-	    if (input.isKeyPressed( SDL_SCANCODE_SPACE ))
-	    {
-		    translation += glm::vec3(0.0f, 1.0f, 0.0f);
-	    }
-	    if (input.isKeyPressed( SDL_SCANCODE_LSHIFT ))
-	    {
-		    translation += glm::vec3(0.0f, -1.0f, 0.0f);
-	    }
-
-	    if (input.isKeyPressed( SDL_SCANCODE_O ))
-	    {
-		    camYaw += 0.01f;
-	    }
-
-	    if (input.isKeyPressed( SDL_SCANCODE_P ))
-	    {
-		    camYaw -= 0.01f;
-	    }
-
-        if (input.isKeyPressed( SDL_SCANCODE_MINUS ))
-        {
-            camPitch -= 0.01f;
-        }
-        if (input.isKeyPressed( SDL_SCANCODE_EQUALS ))
-        {
-            camPitch += 0.01f;
-        }
-
-	    if (input.isKeyPressed( SDL_SCANCODE_T ))
-	    {
-		    addT = true;
-	    }
-
-	    return translation;
-}
 
 //This here sets up the front buffer for post processing.
 //Again, this should be made into an easier thing.
@@ -280,40 +219,43 @@ int main(int argc, char* argv[]) {
 	glm::vec3 camPos = glm::vec3( -1.0f, 0.0f, 0.0f );
 
 	glm::vec3 translation( 0.0f, 0.0f, 0.0f ); 	
-    Input input;
-
     
 
+
+    InputManager input;
+
+    Controller player = Controller(&input);
+
     //The running bool just decides when to terminate the program.
-    bool running = true;
-    while ( running ) 
+    while ( !input.quitRequested() ) 
     {
         //This is the main structure of the actual gameloop.
         //What it does is create an event, and see what has been pressed.
         //Pretty much?
-        SDL_Event event;
-            while ( SDL_PollEvent( &event ) )
-            {
-                if ( event.type == SDL_QUIT ) running = false;
-                if ( event.type == SDL_KEYDOWN || event.type == SDL_KEYUP ) 
-                {
-                    input.updateKeys( &event );
-                }
-        }
+        std::cout << "Start Loop" << std::endl;    
+        input.update(0, 0);
 
-        //Then we update based on our input.
-        translation = inputUpdate(input);
-        translation = translation * 0.25f;
+
+        std::cout << "Updated Keys" << std::endl;
+
         
+        player.ProcessUpdate();
+
+        std::cout << "Proccessed Inputs" << std::endl;
+
+        
+        translation = player.currentPos;
+
+        translation = translation * 0.25f;
+
+        std::cout << translation.x << " " << translation.y << " " <<translation.z << std::endl;
+
         glm::quat rotationQuat = glm::angleAxis(camYaw, glm::vec3(0.0f, 1.0f, 0.0f));
 
-            translation = rotationQuat * translation;
+        translation = rotationQuat * translation;
 
 
-            if(addT)dt += 0.01f;
-        glm::vec3 mPos = glm::vec3(std::sin(dt), std::cos(dt) * 3, 0.0f);
 
-        meshes[0] -> modelPosition = mPos;
 
         glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), translation);
 
