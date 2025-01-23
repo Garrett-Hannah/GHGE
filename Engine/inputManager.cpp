@@ -1,4 +1,5 @@
 #include "inputManager.h"
+#include <cstdint>
 
 InputManager* InputManager::instance = nullptr;
 
@@ -8,18 +9,19 @@ InputManager::InputManager():
     mouseX(0),
     mouseY(0),
     quit_queued(false),
-    isLocked(false)
+    isLocked(false),
+    numKeys(nullptr) 
 { };
 
 bool InputManager::isKeyPressed(KeyboardKey key)
 {
-    if (this -> isLocked ) return false;
+    if ( this -> isLocked ) return false;
 
     if(!(this -> keyboard ))
         return false;
 
-    int sdl_key = static_cast<int>(key);
-
+    uint8_t sdl_key = static_cast<int>(key);
+    
     if(this->keyboard[sdl_key])
         return true;
 
@@ -28,7 +30,7 @@ bool InputManager::isKeyPressed(KeyboardKey key)
 
 bool InputManager::isKeyUp(int key)
 {
-    return this -> keyboard[key];
+    return this -> keyUp[key];
 };
 
 bool InputManager::isKeyDown(int key)
@@ -71,6 +73,9 @@ void InputManager::update(float cameraX, float caeraY)
     curPrintableKey = 0;
 
     SDL_Event event;
+
+    bool keyPressFlag = false;
+
     while(SDL_PollEvent(&event))
     {
         switch ( event.type )
@@ -83,14 +88,13 @@ void InputManager::update(float cameraX, float caeraY)
                 break;
 
             case SDL_KEYDOWN:
-            {
-                this -> keyboard = SDL_GetKeyboardState(nullptr);
-
+            { 
+                this -> keyboard = SDL_GetKeyboardState(&num);
+                
                 int index = event.key.keysym.scancode;
 
                 this -> keyDown[index] = true;
-
             }
         }
-    }
+    }    
 }

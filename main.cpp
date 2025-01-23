@@ -18,15 +18,10 @@
 
 
 
-//Some temporary variables. this needs to be removed soon.
-GLfloat camYaw = 0.0f;
-GLfloat camPitch = 0.0f;
-GLfloat dt = 0.0f;
 
 //Screen width and height values. 
 GLuint SCR_WIDTH, SCR_HEIGHT;
 
-bool addT = false;
 
 //Right here is the background data.
 //First two floats are The position,
@@ -232,24 +227,25 @@ int main(int argc, char* argv[]) {
         //This is the main structure of the actual gameloop.
         //What it does is create an event, and see what has been pressed.
         //Pretty much?
-        std::cout << "Start Loop" << std::endl;    
+
         input.update(0, 0);
 
 
-        std::cout << "Updated Keys" << std::endl;
 
         
         player.ProcessUpdate();
 
-        std::cout << "Proccessed Inputs" << std::endl;
 
         
         translation = player.currentPos;
 
         translation = translation * 0.25f;
 
-        std::cout << translation.x << " " << translation.y << " " <<translation.z << std::endl;
+        
 
+        GLfloat camYaw = player.camYaw;
+        GLfloat camPitch = player.camPitch;
+        
         glm::quat rotationQuat = glm::angleAxis(camYaw, glm::vec3(0.0f, 1.0f, 0.0f));
 
         translation = rotationQuat * translation;

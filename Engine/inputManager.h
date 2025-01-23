@@ -1,3 +1,20 @@
+/* INPUTMANAGER CLASS..
+ *
+ * This class is dedicated to processing
+ *
+ *
+ *
+ * KNOWN ISSUE: KEYBOARD ROLLOVER.
+ * on the surface pro 9, the rollover 
+ * makes it so that when you 
+ * press WASD AND O/P.
+ * It will not accurately send data.
+ *
+ * Unfourtnately this is indeed a hardware limitation.
+ * So there isnt really a fix.
+ */
+
+
 #ifndef INPUTMANAGER_H
 #define INPUTMANAGER_H
 
@@ -62,11 +79,13 @@ class InputManager
 
         InputManager(InputManager const&) {};
         void operator=(InputManager const&) {};
-
+        
+        //pointer to size of array? doesnt seem to work though.
+        int* numKeys;
+    
     private:
 
         static InputManager* instance;
-        
 
 
         const uint8_t* keyboard;
