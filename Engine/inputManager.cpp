@@ -1,17 +1,20 @@
 #include "inputManager.h"
+
 #include <cstdint>
 
 InputManager* InputManager::instance = nullptr;
 
-InputManager::InputManager():
+InputManager::InputManager(SDL_Window* win):
     keyboard(nullptr),
     mouse(0),
     mouseX(0),
     mouseY(0),
     quit_queued(false),
-    isLocked(false),
-    numKeys(nullptr) 
-{ };
+    isLocked(false)
+{
+    sdl_window = win;
+
+};
 
 bool InputManager::isKeyPressed(KeyboardKey key)
 {
@@ -51,13 +54,18 @@ bool InputManager::quitRequested()
 InputManager* InputManager::getInstance()
 {
     if (!instance)
-        instance = new InputManager();
+        instance = new InputManager(nullptr);
 
     return instance;
 }
 
 void InputManager::update(float cameraX, float caeraY)
 {
+    if(isMouseInside())
+    {
+        SDL_GetMouseState(&mouseX, &mouseY);
+        std::cout << mouseX << " " << mouseY << std::endl;
+    }
     int i;
     for(i = 0; i < KEYBOARD_SIZE; i++)
     {
@@ -76,6 +84,7 @@ void InputManager::update(float cameraX, float caeraY)
 
     bool keyPressFlag = false;
 
+
     while(SDL_PollEvent(&event))
     {
         switch ( event.type )
@@ -89,7 +98,7 @@ void InputManager::update(float cameraX, float caeraY)
 
             case SDL_KEYDOWN:
             { 
-                this -> keyboard = SDL_GetKeyboardState(&num);
+                this -> keyboard = SDL_GetKeyboardState(nullptr);
                 
                 int index = event.key.keysym.scancode;
 
@@ -97,4 +106,30 @@ void InputManager::update(float cameraX, float caeraY)
             }
         }
     }    
+}
+
+int InputManager::getMouseX()
+{
+    return mouseX;
+}
+
+int InputManager::getMouseY()
+{
+    return mouseY;
+}
+
+bool InputManager::isMouseInside()
+{
+    if (sdl_window == nullptr) 
+        return false;
+
+    int mouseX, mouseY;
+    SDL_GetMouseState(&mouseX, &mouseY);
+
+    int windowX, windowY, windowWidth, windowHeight;
+    SDL_GetWindowPosition(sdl_window, &windowX, &windowY);
+    SDL_GetWindowSize(sdl_window, &windowWidth, &windowHeight);
+
+    return mouseX >= windowX && mouseX < (windowX + windowWidth) &&
+           mouseY >= windowY && mouseY < (windowY + windowHeight);
 }

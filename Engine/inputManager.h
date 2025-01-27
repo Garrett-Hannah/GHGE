@@ -75,13 +75,11 @@ class InputManager
         std::string getCurPrintableKey();
 
 
-        InputManager();
+        InputManager(SDL_Window* win);
 
         InputManager(InputManager const&) {};
         void operator=(InputManager const&) {};
         
-        //pointer to size of array? doesnt seem to work though.
-        int* numKeys;
     
     private:
 
@@ -108,6 +106,8 @@ class InputManager
         int curPrintableKey;
 
         bool isLocked;
+
+        SDL_Window* sdl_window;
 };
 
 #endif

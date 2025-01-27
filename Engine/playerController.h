@@ -11,10 +11,16 @@ class Controller
     InputManager* inputManager;
 
     void ProcessUpdate();
+    
+    glm::vec3 getMoveDir();
 
     Controller(InputManager* manager)
     {
         inputManager = manager;
     }
+
+    private:
+        int oldMouseX;
+        int oldMouseY;
 
 };

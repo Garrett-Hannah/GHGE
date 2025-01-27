@@ -170,7 +170,7 @@ int main(int argc, char* argv[]) {
     //by just returning the vert and index data 
     //as a mesh to begin with?
     ObjReader r = ObjReader();    
-	r.openObjFile("data/xyzrgb_dragon.obj");
+	r.openObjFile("data/stanford-bunny.obj");
 	r.writeToMeshBuffer();
 	vertices = r.verts;
 	indices = r.indicies;
@@ -186,7 +186,7 @@ int main(int argc, char* argv[]) {
 	meshes.push_back(new Mesh(vertices, indices, textures));
 
 
-    meshes[0] -> modelScale = glm::vec3(0.250f, 0.250f, 0.250f);
+    meshes[0] -> modelScale = glm::vec3(25.0f, 25.0f, 25.0f);
 	
 	
     //Push back shaders for background.
@@ -217,7 +217,9 @@ int main(int argc, char* argv[]) {
     
 
 
-    InputManager input;
+    InputManager input(renderer.getWindow());
+
+    std::cout << "InputManager Set up..." << std::endl; 
 
     Controller player = Controller(&input);
 
@@ -230,11 +232,9 @@ int main(int argc, char* argv[]) {
 
         input.update(0, 0);
 
-
-
         
         player.ProcessUpdate();
-
+        
 
         
         translation = player.currentPos;
@@ -249,8 +249,6 @@ int main(int argc, char* argv[]) {
         glm::quat rotationQuat = glm::angleAxis(camYaw, glm::vec3(0.0f, 1.0f, 0.0f));
 
         translation = rotationQuat * translation;
-
-
 
 
         glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), translation);
@@ -284,6 +282,7 @@ int main(int argc, char* argv[]) {
 
         //Swap windows
         renderer.swapwindow();  // Swap buffers
+        
     }
 
         renderer.cleanup();
