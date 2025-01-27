@@ -262,8 +262,10 @@ int main(int argc, char* argv[]) {
 
 
         camera.setPosition( camPos );
+        
+        std::cout << input.getMouseVelX() << " " << input.getMouseVelY() << std::endl;
 
-        camera.setTarget( camPos + glm::vec3(std::sin(camYaw), std::sin(camPitch), std::cos(camYaw)));
+        camera.setTarget( camPos + glm::vec3(std::sin(camYaw), std::sin(camPitch) + std::cos(camPitch), std::cos(camYaw)));
 
 
         //Clear the color bits.

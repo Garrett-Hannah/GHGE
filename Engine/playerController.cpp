@@ -39,16 +39,11 @@ glm::vec3 Controller::getMoveDir()
 
 void Controller::ProcessUpdate()
 {
-        if (inputManager -> isKeyPressed( KEY_MINUS ))
-        {
-            camPitch -= 0.01f;
-        }
+    if(inputManager == nullptr) return;
 
-        if (inputManager -> isKeyPressed( KEY_EQUALS ))
-        {
-            camPitch += 0.01f;
-        }
-        
+        camYaw -= float(inputManager -> getMouseVelX()) / 150.0f;    
+        camPitch += float(inputManager -> getMouseVelY()) / 300.0f;
+
 	    if (inputManager -> isKeyPressed( KEY_O ))
 	    {
 		    camYaw += 0.01f;

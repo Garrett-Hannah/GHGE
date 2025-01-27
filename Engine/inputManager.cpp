@@ -63,9 +63,11 @@ void InputManager::update(float cameraX, float caeraY)
 {
     if(isMouseInside())
     {
+        prevMouseX = mouseX; prevMouseY = mouseY;
+
         SDL_GetMouseState(&mouseX, &mouseY);
-        std::cout << mouseX << " " << mouseY << std::endl;
     }
+
     int i;
     for(i = 0; i < KEYBOARD_SIZE; i++)
     {
@@ -130,6 +132,19 @@ bool InputManager::isMouseInside()
     SDL_GetWindowPosition(sdl_window, &windowX, &windowY);
     SDL_GetWindowSize(sdl_window, &windowWidth, &windowHeight);
 
-    return mouseX >= windowX && mouseX < (windowX + windowWidth) &&
-           mouseY >= windowY && mouseY < (windowY + windowHeight);
+
+    bool state =  mouseX >= 0 && mouseX < windowWidth &&
+           mouseY >= 0 && mouseY < windowHeight;
+
+    return state;
+}
+
+int InputManager::getMouseVelX()
+{
+    return mouseX - prevMouseX;
+}
+
+int InputManager::getMouseVelY()
+{
+    return mouseY - prevMouseY;
 }

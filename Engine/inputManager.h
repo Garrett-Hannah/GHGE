@@ -63,6 +63,10 @@ class InputManager
 
         int getMouseY();
 
+        int getMouseVelX();
+
+        int getMouseVelY();
+
         void lock();
 
         void unlock();
@@ -93,6 +97,11 @@ class InputManager
         int mouseX;
 
         int mouseY;
+        
+        int prevMouseX;
+
+        int prevMouseY;
+        
 
         bool keyDown[KEYBOARD_SIZE];
 
