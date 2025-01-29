@@ -107,7 +107,12 @@ void InputManager::update(float cameraX, float caeraY)
                 this -> keyDown[index] = true;
             }
         }
-    }    
+    }
+
+    if(this -> isKeyDown(KEY_ESCAPE))
+    {
+        this -> quit_queued = true;
+    }
 }
 
 int InputManager::getMouseX()

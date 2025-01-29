@@ -222,6 +222,7 @@ int main(int argc, char* argv[]) {
     std::cout << "InputManager Set up..." << std::endl; 
 
     Controller player = Controller(&input);
+    
 
     //The running bool just decides when to terminate the program.
     while ( !input.quitRequested() ) 
@@ -263,8 +264,8 @@ int main(int argc, char* argv[]) {
 
         camera.setPosition( camPos );
         
-        std::cout << input.getMouseVelX() << " " << input.getMouseVelY() << std::endl;
-
+        input.getMouseVelX();
+        input.getMouseVelY();
         camera.setTarget( camPos + glm::vec3(std::sin(camYaw), std::sin(camPitch) + std::cos(camPitch), std::cos(camYaw)));
 
 
