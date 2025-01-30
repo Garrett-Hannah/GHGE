@@ -54,5 +54,11 @@ void Controller::ProcessUpdate()
 		    camYaw -= 0.01f;
 	    }
 
+        if (inputManager -> isKeyPressed( KEY_MINUS ))
+            camPitch -= 0.01f;
+
+        if (inputManager -> isKeyPressed( KEY_0))
+            camPitch += 0.01f;
+
         currentPos = getMoveDir();
 }

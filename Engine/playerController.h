@@ -5,8 +5,8 @@ class Controller
 {
     public:    
     glm::vec3 currentPos;
-    float camYaw;
-    float camPitch;
+    float camYaw = 0.0f;
+    float camPitch = 0.0f;
 
     InputManager* inputManager;
 

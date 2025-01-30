@@ -110,6 +110,15 @@ void Shader::setMat4(const std::string &variable,const glm::mat4 &matrix)
 }
 
 
+void Shader::setFloat(const std::string &variable,const GLfloat &value)
+{
+	// Retrieve the location of the uniform variable in the shader
+        int location = glGetUniformLocation(ID, variable.c_str());
+
+        // Set the uniform value
+        glUniform1f(location, value);
+}
+
 Shader::~Shader() {
     glDeleteProgram(ID);
 }

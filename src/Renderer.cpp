@@ -4,6 +4,12 @@
 //The render funciton. Takes a mesh,
 //A camera, and uses the camera transforms
 //to draw the mesh in 3D space.
+
+namespace tmp
+{
+    float tmpVal = 0;
+};
+
 void Renderer::render(Mesh& mesh, Camera& camera)
 {
 	//Get the view matrix, projection matrix.
@@ -25,6 +31,8 @@ void Renderer::render(Mesh& mesh, Camera& camera)
 	shader -> setMat4("projection", projection);
 	shader -> setMat4("view", view);
 	shader -> setMat4("model", model);
+    shader -> setFloat("FARPLANE", std::sin(tmp::tmpVal += 0.04f));
+    
 
 	//Draw the mesh with the shader.
 	mesh.Draw(*shader);

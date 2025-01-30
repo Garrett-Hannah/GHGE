@@ -236,12 +236,10 @@ int main(int argc, char* argv[]) {
         
         player.ProcessUpdate();
         
-
-        
         translation = player.currentPos;
 
         translation = translation * 0.25f;
-
+        
         
 
         GLfloat camYaw = player.camYaw;
@@ -250,8 +248,9 @@ int main(int argc, char* argv[]) {
         glm::quat rotationQuat = glm::angleAxis(camYaw, glm::vec3(0.0f, 1.0f, 0.0f));
 
         translation = rotationQuat * translation;
-
-
+        translation.z = -translation.z;
+        translation.x = -translation.x;
+    
         glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), translation);
 
         // Apply the translation by multiplying the matrix and the vector
@@ -266,9 +265,15 @@ int main(int argc, char* argv[]) {
         
         input.getMouseVelX();
         input.getMouseVelY();
-        camera.setTarget( camPos + glm::vec3(std::sin(camYaw), std::sin(camPitch) + std::cos(camPitch), std::cos(camYaw)));
+        
+        glm::vec3 camRotation;
+        camRotation.z = std::cos(camYaw) * std::cos(camPitch);
+        camRotation.y = std::sin(camPitch);
+        camRotation.x = std::sin(camYaw) * std::cos(camPitch);
+        
 
-
+        camera.setTarget(camPos + glm::normalize(camRotation));
+        
         //Clear the color bits.
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
