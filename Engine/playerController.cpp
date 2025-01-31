@@ -59,6 +59,13 @@ void Controller::ProcessUpdate()
 
         if (inputManager -> isKeyPressed( KEY_0))
             camPitch += 0.01f;
+        
+        if (inputManager -> isKeyPressed( KEY_R ))
+        {
+            this -> camPitch = 0.0f;
+            this -> camYaw = 0.0f;
+            this -> currentPos = glm::vec3(0.0f, 0.0f, 0.0f); 
+        }
 
         currentPos = getMoveDir();
 }
