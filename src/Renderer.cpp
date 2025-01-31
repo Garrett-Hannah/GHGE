@@ -31,7 +31,7 @@ void Renderer::render(Mesh& mesh, Camera& camera)
 	shader -> setMat4("projection", projection);
 	shader -> setMat4("view", view);
 	shader -> setMat4("model", model);
-    shader -> setFloat("FARPLANE", std::sin(tmp::tmpVal += 0.04f));
+    shader -> setFloat("FARPLANE", tmp::tmpVal += 0.04f);
     
 
 	//Draw the mesh with the shader.
