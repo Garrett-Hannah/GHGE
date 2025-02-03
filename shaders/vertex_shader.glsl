@@ -9,7 +9,12 @@ uniform mat4 view;
 uniform mat4 projection;
 uniform float FARPLANE;
 
+//Implement this when needed.
+//uniform vec3 lightPoint;
+
 out vec3 FragNormal;
+out float lightVal;
+
 out float tcolor;
 
 mat4 BuildTranslation(vec3 delta)
@@ -32,6 +37,17 @@ void main()
     
 
     mat3 normalMatrix = transpose(inverse(mat3(model))); 
+    
+    //Temporarily just the direction vector of light...
+    vec3 lightPoint = vec3(sin(tcolor), sin(tcolor + 0.5), sin(tcolor * 0.9 + 1.0));
+    lightPoint = normalize(lightPoint);
+
     FragNormal = normalize(normalMatrix * aNormal);
     
+    vec3 v3gl_pos = vec3(gl_Position[0], gl_Position[1], gl_Position[2]);
+
+    //Direction to light...
+    vec3 lightDir = normalize(lightPoint - v3gl_pos);
+
+    lightVal = abs(length(cross(FragNormal, lightDir)));
 }

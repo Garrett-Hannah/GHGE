@@ -1,8 +1,11 @@
+//Fragment shader for basic models...
 #version 330
 
 in vec3 FragNormal;
 
 in float tcolor;
+
+in float lightVal;
 
 out vec4 FragColor;
 
@@ -12,7 +15,7 @@ float roundToTenth(float val)
 }
 
 void main() {
-    vec3 color = normalize(FragNormal) * 0.5 + 0.5;
+    /*vec3 color = normalize(FragNormal) * 0.5 + 0.5;
     
     
     FragColor = vec4(1.0, 1.0, 1.0, 1.0);
@@ -28,10 +31,10 @@ void main() {
     FragColor += 0.5;
 
     FragColor *= vec4(0.89, 0.7, 0.7, 1);
-
+    */
 
     //FragColor = 0.75 * vec4(shade, shade, shade, 0.0);
     
-    float normVal = FragNormal.y;
-
+    //float normVal = FragNormal.y;
+    FragColor = vec4(lightVal, lightVal, lightVal, 1.0);
 }
