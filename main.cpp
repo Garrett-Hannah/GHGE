@@ -145,7 +145,7 @@ int main(int argc, char* argv[]) {
     //by just returning the vert and index data 
     //as a mesh to begin with?
     ObjReader r = ObjReader();    
-	r.openObjFile("data/stanford-bunny.obj");
+	r.openObjFile("data/xyzrgb_dragon.obj");
 	r.writeToMeshBuffer();
 	vertices = r.verts;
 	indices = r.indicies;
@@ -161,7 +161,7 @@ int main(int argc, char* argv[]) {
 	meshes.push_back(new Mesh(vertices, indices, textures));
 
 
-    meshes[0] -> modelScale = glm::vec3(25.0f, 25.0f, 25.0f);
+    meshes[0] -> modelScale = glm::vec3(1.0f, 1.0f, 1.0f);
 	
 	
     //Push back shaders for background.

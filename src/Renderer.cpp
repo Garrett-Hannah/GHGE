@@ -20,8 +20,7 @@ void Renderer::render(Mesh& mesh, Camera& camera)
 	winWidth = ghge_window -> getWinWidth();
 	winHeight = ghge_window -> getWinHeight();
 
-	glm::mat4 projection = camera.getProjectionMatrix(glm::radians(80.0f), (float)winWidth/winHeight, 0.1f, 100.0f);
-
+	glm::mat4 projection = camera.getProjectionMatrix(glm::radians(80.0f), (float)winWidth/winHeight, 0.1f, 450.0f);
 	//Apply model transforms.
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), mesh.modelPosition);
 	model = glm::scale(model, mesh.modelScale);
