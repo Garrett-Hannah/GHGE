@@ -160,10 +160,9 @@ int main(int argc, char* argv[]) {
     //the mesh data from earlier
 	meshes.push_back(new Mesh(vertices, indices, textures));
 
-
-    meshes[0] -> modelScale = glm::vec3(1.0f, 1.0f, 1.0f);
-	
-	
+    meshes[0] -> modelScale = r.getNormScale();
+    meshes[0] -> modelScale *= 10.0f;
+    meshes[0] -> modelPosition += glm::vec3(0.0, 1.4, 0.0);
     //Push back shaders for background.
     //Then setup the background vbo
     shaders.push_back(new Shader("shaders/bgVshader.glsl", "shaders/bgFshader.glsl"));

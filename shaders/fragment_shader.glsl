@@ -5,15 +5,20 @@ in vec3 FragNormal;
 in vec3 FragPosition;
 
 in float tcolor;
-
-
 out vec4 FragColor;
 
 uniform vec3 lightPos;
 
+
 float roundToTenth(float val)
 {
     return round(val * 10.0) / 10.0;
+}
+
+
+float clampToMax(float val, float max, float threshold)
+{
+    return mix(val, max, step(max - threshold, val));
 }
 
 vec4 getLightVal(vec3 fragNorm, vec3 lDir)
@@ -26,15 +31,18 @@ vec4 getLightVal(vec3 fragNorm, vec3 lDir)
 }
 
 void main() {
-    vec3 lightDir = vec3(sin(tcolor), -1.0 , cos(tcolor) );
+    vec3 lightDir = vec3(sin(tcolor) * 0.25, -1.0, 0.0);
+    lightDir = normalize(lightDir);
     //float distance = length(FragPosition - lightPos);
    
-    FragColor = getLightVal(FragNormal, lightDir);
+    vec4 lightMap = getLightVal(FragNormal, lightDir);
 
-    if(FragPosition.x > sin(tcolor * 0.1) * 67.5)
-        FragColor *= vec4(1.0, 0.0, 0.0, 1.0);
-    else
-        FragColor *= vec4(0.0, 0.0, 1.0, 1.0);
+    vec4 refLightMap = getLightVal(FragNormal, -lightDir);
+
+    float v = min(max(dot(FragNormal, lightDir), 0.0), 1.0);
     
+    refLightMap = mix(vec4(vec3(0.0), 1.0), vec4(1.0), v);
     
+    FragColor = refLightMap;
 }
+

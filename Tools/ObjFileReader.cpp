@@ -5,6 +5,7 @@
 //
 //  This is our implementation for the objreader.
 #include "ObjFileReader.h"
+#include <glm/geometric.hpp>
 
 
 //set validReadPath to nothing and create a mesh.
@@ -33,6 +34,14 @@ bool ObjReader::openObjFile(std::string path)
 
 };
 
+//Returns a normalized version of the scale...
+glm::vec3 ObjReader::getNormScale()
+{
+    float meshSize = glm::length(glm::vec3(mxX, mxY, mxZ) - glm::vec3(mnX, mnY, mnZ)); 
+    
+    if(meshSize == 0) return glm::vec3(1.0);
+    return glm::vec3(1 / meshSize); 
+}
 
 //read from the .obj file into our mesh object.
 void ObjReader::writeToMeshBuffer()
@@ -43,7 +52,9 @@ void ObjReader::writeToMeshBuffer()
         std::cout << "Failed!" << std::endl;
         return;
     }
-	lineCount = 0;
+	
+
+    lineCount = 0;
     //create an inputstream and open the file.
     std::ifstream objFile;
     objFile.open(readPath);
@@ -70,6 +81,13 @@ void ObjReader::writeToMeshBuffer()
             // vertex info:
             case 'v':
                 vTemp = parseVertexLine(line);
+                mnX = std::min(mnX, vTemp.Position.x);
+                mnY = std::min(mnY, vTemp.Position.y);
+                mnZ = std::min(mnZ, vTemp.Position.z);
+                
+                mxX = std::max(mxX, vTemp.Position.x);
+                mxY = std::max(mxY, vTemp.Position.y);
+                mxZ = std::max(mxZ, vTemp.Position.z);
                 verts.push_back(vTemp);
 
             break;

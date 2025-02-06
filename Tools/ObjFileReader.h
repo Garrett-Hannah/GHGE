@@ -41,7 +41,10 @@ class ObjReader
 	std::vector<Vertex> verts;
 	std::vector<GLuint> indicies;
 
-	//Out OpenObjFile will read our path.
+    float mnX, mnY, mnZ, mxX, mxY, mxZ;
+    
+    glm::vec3 getNormScale();
+    //Out OpenObjFile will read our path.
 	bool openObjFile(std::string path);
 	//Return Our MeshBuffer As a mesh.
 	//This will write from our file into our mesh buffer.
