@@ -24,6 +24,8 @@ class Renderer {
 		void swapwindow();
 		void setShader(Shader *shader_);
 	    void init();
+        
+
 
 		void setBGdrawMethod(void (*ptr)());
 		SDL_Window* getWindow(){ return ghge_window -> getSdlWindow();};		

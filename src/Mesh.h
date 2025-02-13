@@ -42,8 +42,8 @@ class Mesh {
 		//Take all faces and calculate the normal from each one.
 		void calculateNormals();
 
-	private:
 		void setupMesh();
+	private:
 		
 };
 

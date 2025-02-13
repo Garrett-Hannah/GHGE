@@ -21,7 +21,8 @@ class Shader {
 		GLuint getID() {return ID;};
 		void setMat4(const std::string& variable,const glm::mat4& value);
         void setFloat(const std::string& variable, const glm::float32& value);
-	private:
+        void setVec3(const std::string& variable, const glm::vec3& value);
+    private:
 		GLuint ID;
         std::string* vPath;
         std::string* fPath;

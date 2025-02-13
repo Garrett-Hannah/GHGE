@@ -19,6 +19,8 @@ class Controller
         inputManager = manager;
     }
 
+    glm::vec3 getCameraTarget(const glm::vec3& camPos);
+
     private:
         int oldMouseX;
         int oldMouseY;

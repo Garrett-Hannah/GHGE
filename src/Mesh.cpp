@@ -14,8 +14,8 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, std::vecto
 
 	
 
-	calculateNormals();
-	setupMesh();
+	//calculateNormals();
+	//setupMesh();
 }
 
 void Mesh::calculateNormals()
@@ -28,7 +28,7 @@ void Mesh::calculateNormals()
 		v2 = vertices[indices[i+2]];
 
 		
-		glm::vec3 Normal = glm::normalize(glm::cross((v2.Position - v0.Position), (v1.Position - v0.Position)));
+		glm::vec3 Normal = -glm::normalize(glm::cross((v2.Position - v0.Position), (v1.Position - v0.Position)));
 
 
 		//vertices[i].Normal = Normal;

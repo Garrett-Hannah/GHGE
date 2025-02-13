@@ -1,40 +1,26 @@
 #version 330 core
 
-layout (location = 0) in vec3 aPos;
-layout (location = 1) in vec3 aNormal;
-layout (location = 2) in vec2 aTexCoords;
+layout(location = 0) in vec3 aPos;    // Vertex position
+layout(location = 1) in vec3 aNormal; // Vertex normal
 
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
-uniform float FARPLANE;
 
-//Implement this when needed.
-//uniform vec3 lightPoint;
+out vec3 FragPos_view;
+out vec3 Normal_view;
 
-out vec3 FragNormal;
-out vec3 FragPosition;
-out float lightVal;
+void main() {
+    // Convert vertex position to world space
+    vec4 fragPos_world = model * vec4(aPos, 1.0);
 
-out float tcolor;
+    // Convert position to view space
+    FragPos_view = vec3(view * fragPos_world);
 
-mat4 BuildTranslation(vec3 delta)
-{
-    return mat4(
-            vec4(1.0, .0, .0, .0),
-            vec4(0.0, 1.0, .0, .0),
-            vec4(.0, .0, 1.0, .0),
-            vec4(delta, 1.0));
+    // Transform normal into view space correctly
+    Normal_view = normalize(mat3(view * model) * aNormal);
+
+    // Final position in clip space
+    gl_Position = projection * vec4(FragPos_view, 1.0);
 }
 
-void main()
-{
-    tcolor = FARPLANE;
-    mat4 modelP = model;
-    //modelP = modelP + BuildTranslation(vec3(FARPLANE));
-
-    gl_Position = projection * view * modelP * vec4(aPos, 1.0);
-    
-    FragNormal = normalize(mat3(transpose(inverse(modelP))) * aNormal);
-    FragPosition = vec3(model * vec4(aPos, 1.0));
-}

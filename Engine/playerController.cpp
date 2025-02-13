@@ -37,6 +37,19 @@ glm::vec3 Controller::getMoveDir()
         return translation;
 }
 
+glm::vec3 Controller::getCameraTarget(const glm::vec3& camPos)
+{
+        camYaw += inputManager -> getMouseVelX();
+        camPitch += inputManager -> getMouseVelY();
+                
+        glm::vec3 camRotation;
+        camRotation.z = std::cos(camYaw) * std::cos(camPitch);
+        camRotation.y = std::sin(camPitch);
+        camRotation.x = std::sin(camYaw) * std::cos(camPitch);
+
+        return camPos + glm::normalize(camRotation);
+}
+
 void Controller::ProcessUpdate()
 {
     if(inputManager == nullptr) return;

@@ -1,5 +1,6 @@
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
+#include <glm/ext/vector_float3.hpp>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -17,7 +18,7 @@
 #include "Tools/ObjFileReader.h"
 
 
-
+float dt = 0.0;
 
 //Screen width and height values. 
 GLuint SCR_WIDTH, SCR_HEIGHT;
@@ -102,6 +103,7 @@ void bgDraw(Shader* shader)
 
 int main(int argc, char* argv[]) {
 
+
     //Enter program
 	std::cout << "Program entered!" << std::endl;
 
@@ -145,7 +147,7 @@ int main(int argc, char* argv[]) {
     //by just returning the vert and index data 
     //as a mesh to begin with?
     ObjReader r = ObjReader();    
-	r.openObjFile("data/xyzrgb_dragon.obj");
+	r.openObjFile("data/cow.obj");
 	r.writeToMeshBuffer();
 	vertices = r.verts;
 	indices = r.indicies;
@@ -159,10 +161,11 @@ int main(int argc, char* argv[]) {
     //Creates a new mesh, with
     //the mesh data from earlier
 	meshes.push_back(new Mesh(vertices, indices, textures));
-
+    meshes[0] -> calculateNormals();
     meshes[0] -> modelScale = r.getNormScale();
     meshes[0] -> modelScale *= 10.0f;
     meshes[0] -> modelPosition += glm::vec3(0.0, 1.4, 0.0);
+    meshes[0] -> setupMesh();
     //Push back shaders for background.
     //Then setup the background vbo
     shaders.push_back(new Shader("shaders/bgVshader.glsl", "shaders/bgFshader.glsl"));
@@ -172,22 +175,38 @@ int main(int argc, char* argv[]) {
     //
     //This one is just a simple plane.
     std::vector<Vertex> vertices2 = {
-        {{-10.0f,  0.0f, 10.0f}, { 0.0f,  0.0,  0.0f}, {0.0f, 1.0f}}, // Top-left (Top face)
-        {{ 10.0f,  0.0f, 10.0f}, { 0.0f,  0.0f,  0.0f}, {1.0f, 1.0f}}, // Top-right
-        {{ -10.0f,  0.0f,  -10.0f}, { 0.0f,  0.0f,  0.0f}, {1.0f, 0.0f}}, // Bottom-right
-        {{10.0f,  0.0f,  -10.0f}, { 0.0f,  0.0f,  0.0f}, {0.0f, 0.0f}}, // Bottom-left
+        {{-10.0f,  0.0f, 10.0f}, { 0.0f,  1.0,  0.0f}, {0.0f, 1.0f}}, // Top-left (Top face)
+        {{ 10.0f,  0.0f, 10.0f}, { 0.0f,  1.0f,  0.0f}, {1.0f, 1.0f}}, // Top-right
+        {{ -10.0f,  0.0f,  -10.0f}, { 0.0f,  1.0f,  0.0f}, {1.0f, 0.0f}}, // Bottom-right
+        {{10.0f,  0.0f,  -10.0f}, { 0.0f,  1.0f,  0.0f}, {0.0f, 0.0f}}, // Bottom-left
     };
     std::vector<GLuint> indices2 = {
-        0, 1, 2, 2, 1, 3
+        3, 1, 2, 2, 1, 0
     };
-    meshes.push_back( new Mesh( vertices2, indices2, textures ) );
 
+    meshes.push_back( new Mesh( vertices2, indices2, textures ) );
+    meshes[1] -> setupMesh(); 
+    
+    std::vector<Vertex> vertices3 = {
+        {{-10.0f,  0.0f, 10.0f}, { 0.0f,  1.0,  0.0f}, {0.0f, 1.0f}}, // Top-left (Top face)
+        {{ 10.0f,  0.0f, 10.0f}, { 0.0f,  1.0f,  0.0f}, {1.0f, 1.0f}}, // Top-right
+        {{ -10.0f,  0.0f,  -10.0f}, { 0.0f,  1.0f,  0.0f}, {1.0f, 0.0f}}, // Bottom-right
+        {{10.0f,  0.0f,  -10.0f}, { 0.0f,  1.0f,  0.0f}, {0.0f, 0.0f}}, // Bottom-left
+    };
+    std::vector<GLuint> indices3 = {
+        3, 1, 2, 2, 1, 0
+    };
+
+    meshes.push_back( new Mesh( vertices3, indices3, textures) );
+    
+    meshes[2] -> modelScale *= 0.2;
+    meshes[2] -> modelPosition += glm::vec3(0.0, 4.0, 1.0);
+    meshes[2] -> setupMesh();
     //Here is the camera initialization.	
     Camera camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 	glm::vec3 camPos = glm::vec3( -1.0f, 0.0f, 0.0f );
 
-	glm::vec3 translation( 0.0f, 0.0f, 0.0f ); 	
     
 
 
@@ -198,26 +217,48 @@ int main(int argc, char* argv[]) {
     Controller player = Controller(&input);
     
 
+    
+	glm::vec3 translation( 0.0f, 0.0f, 0.0f );
+
+    camera.TempLightPos = glm::vec3(0.0);
+    
     //The running bool just decides when to terminate the program.
     while ( !input.quitRequested() ) 
     {
         //This is the main structure of the actual gameloop.
         //What it does is create an event, and see what has been pressed.
         //Pretty much?
-
+    
+        //First input will
+        //Gather user inputs.
+        //This will be used to change states of game objects.
         input.update(0, 0);
-
         
+        //Processing the update involves calculating diffreneces (often through 
+        //either inputs, Or individual object logic).
         player.ProcessUpdate();
+    
+        if(input.isKeyDown(KEY_J)) camera.TempLightPos += glm::vec3(0.0, 0.1f, 0.0);
+        if(input.isKeyDown(KEY_K)) camera.TempLightPos += glm::vec3(0.0, -0.1f, 0.0);
+        if(input.isKeyDown(KEY_B)) camera.TempLightPos += glm::vec3(0.1, 0.0, 0.0);
+        if(input.isKeyDown(KEY_N)) camera.TempLightPos += glm::vec3(0.0, 0.0, -0.1);
+        if(input.isKeyDown(KEY_M)) camera.TempLightPos += glm::vec3(-0.1, 0.0, 0.0);
+        if(input.isKeyDown(KEY_H)) camera.TempLightPos += glm::vec3(0.0, 0.0f, 0.1);
         
+        meshes[2] -> modelPosition = camera.TempLightPos;
+
         translation = player.currentPos;
 
         translation = translation * 0.25f;
         
         
+        //Really this stuff should/could be theoretically handled.
+        //inside the player class itself. 
+        //but its not for some reason.
 
-        GLfloat camYaw = player.camYaw;
+
         GLfloat camPitch = player.camPitch;
+        GLfloat camYaw = player.camYaw;
         
         glm::quat rotationQuat = glm::angleAxis(camYaw, glm::vec3(0.0f, 1.0f, 0.0f));
 
@@ -230,37 +271,44 @@ int main(int argc, char* argv[]) {
 
         // If you need a glm::vec3 result (ignoring the w-component), you can convert it back:
         camPos = glm::vec3(translatedVec);
-            // Render here
-
+            // Render here 
 
         camera.setPosition( camPos );
         
         input.getMouseVelX();
         input.getMouseVelY();
-        
+
+
         glm::vec3 camRotation;
         camRotation.z = std::cos(camYaw) * std::cos(camPitch);
         camRotation.y = std::sin(camPitch);
         camRotation.x = std::sin(camYaw) * std::cos(camPitch);
         
 
+        //camera.setTarget(camPos + glm::normalize(camRotation));
         camera.setTarget(camPos + glm::normalize(camRotation));
-        
+
         //Clear the color bits.
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
 
         //Draw the background.
         bgDraw(shaders[1]);
         
         
         //Final step. render the meshes.
+        //This is done last, because of course it is.
+        //After all, this wont be too important. 
+        //Because its all done now.
         for(Mesh* mesh : meshes )
         {
             renderer.render(*mesh, camera);
         }
 
+        //Although i might want to get some post-processing effect
+        //in this, and that will drastically change code.
+
         //Swap windows
+        //This part just does it i guess....
         renderer.swapwindow();  // Swap buffers
         
     }

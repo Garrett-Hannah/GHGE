@@ -1,48 +1,43 @@
-//Fragment shader for basic models...
-#version 330
+#version 330 core
 
-in vec3 FragNormal;
-in vec3 FragPosition;
+in vec3 FragPos_view;
+in vec3 Normal_view;
 
-in float tcolor;
 out vec4 FragColor;
 
-uniform vec3 lightPos;
+uniform vec3 lightPos_world; // Light position in world space
+uniform vec3 viewPos_world;  // Camera position in world space
+uniform vec3 lightColor;     // Light color
 
-
-float roundToTenth(float val)
-{
-    return round(val * 10.0) / 10.0;
-}
-
-
-float clampToMax(float val, float max, float threshold)
-{
-    return mix(val, max, step(max - threshold, val));
-}
-
-vec4 getLightVal(vec3 fragNorm, vec3 lDir)
-{
-    float lightVal = max(dot(fragNorm, lDir), 0.0);
-
-    vec4 v4LightVal = vec4(vec3(lightVal), 1.0);
-
-    return v4LightVal;
-}
+uniform mat4 view;  // View matrix
 
 void main() {
-    vec3 lightDir = vec3(sin(tcolor) * 0.25, -1.0, 0.0);
-    lightDir = normalize(lightDir);
-    //float distance = length(FragPosition - lightPos);
-   
-    vec4 lightMap = getLightVal(FragNormal, lightDir);
+    // Transform the light position into view space
+    vec3 lightPos_view = vec3(view * vec4(lightPos_world, 1.0));
 
-    vec4 refLightMap = getLightVal(FragNormal, -lightDir);
+    // Compute light direction in view space
+    vec3 lightDir = normalize(lightPos_view - FragPos_view);
 
-    float v = min(max(dot(FragNormal, lightDir), 0.0), 1.0);
+    // Normalize the normal vector
+    vec3 normal = normalize(Normal_view);
+
+    // Diffuse shading (Lambertian reflection)
+    float diff = max(dot(normal, lightDir), 0.0);
     
-    refLightMap = mix(vec4(vec3(0.0), 1.0), vec4(1.0), v);
+    // Specular shading (Blinn-Phong)
+    vec3 viewDir = normalize(-FragPos_view); // Camera is at (0,0,0) in view space
+    vec3 halfwayDir = normalize(lightDir + viewDir);
+    float spec = pow(max(dot(normal, halfwayDir), 0.0), 32.0);
+
+    // Combine ambient, diffuse, and specular lighting
+    vec3 ambient = 0.1 * lightColor;
+    vec3 diffuse = diff * lightColor;
+    vec3 specular = spec * lightColor;
+
+    vec3 result = ambient + diffuse + specular;
+    //FragColor = vec4(result, 1.0);
+
+    FragColor = vec4(abs(lightDir), 1.0);
     
-    FragColor = refLightMap;
 }
 

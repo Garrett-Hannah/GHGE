@@ -100,6 +100,14 @@ void Shader::use()
 }
 
 
+void Shader::setVec3(const std::string& variable, const glm::vec3& value)
+{
+    int location = glGetUniformLocation(ID, variable.c_str());
+        // Set the uniform value
+    glUniform3f(location, value.x, value.y, value.x);
+}
+
+
 void Shader::setMat4(const std::string &variable,const glm::mat4 &matrix)
 {
 	// Retrieve the location of the uniform variable in the shader

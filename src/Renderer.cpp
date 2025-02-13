@@ -8,6 +8,7 @@
 namespace tmp
 {
     float tmpVal = 0;
+    glm::vec3 lightPos = glm::vec3(0.0);
 };
 
 void Renderer::render(Mesh& mesh, Camera& camera)
@@ -24,14 +25,21 @@ void Renderer::render(Mesh& mesh, Camera& camera)
 	//Apply model transforms.
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), mesh.modelPosition);
 	model = glm::scale(model, mesh.modelScale);
+    
+    //tmp::lightPos = mesh.modelPosition;
+    //std::cout << tmp::lightPos.x << std::endl;
 
-	//Use the shader attached to this renderer.
+    //Use the shader attached to this renderer.
 	shader -> use();
 	shader -> setMat4("projection", projection);
 	shader -> setMat4("view", view);
 	shader -> setMat4("model", model);
-    shader -> setFloat("FARPLANE", tmp::tmpVal += 0.04f);
-    
+    shader -> setVec3("lightPos_world", camera.TempLightPos);
+    shader -> setVec3("viewPos_world", camera.getPosition()); 
+  
+    shader -> setVec3("lightColor", glm::vec3(0.24, 1.0, 1.0));
+
+
 
 	//Draw the mesh with the shader.
 	mesh.Draw(*shader);
@@ -72,7 +80,7 @@ Renderer::Renderer(const GLuint &winWidth_, const GLuint &winHeight_)
 
 }
 
-//Cleanup some of the SDL components, like the window
+//Cleanup some of the SDL ts, like the window
 //and quit sdl.
 void Renderer::cleanup()
 {

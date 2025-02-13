@@ -16,7 +16,8 @@ class Camera{
 		void setPosition(const glm::vec3 pos){ position = pos;};
 		glm::vec3 getPosition();
 		void setTarget(glm::vec3 targ);
-	private:
+	    glm::vec3 TempLightPos;
+    private:
 		glm::vec3 position;
 		glm::vec3 target;
 		glm::vec3 up;
