@@ -1,6 +1,6 @@
 # GHGE
 
-![image](https://github.com/user-attachments/assets/[########]-1232-45a0-9c77-261f18ec0db6)
+![image](image.png)
 
 A small attempt at a game engine.
 
