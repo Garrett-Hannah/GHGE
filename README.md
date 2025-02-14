@@ -1,4 +1,4 @@
-# GHGE
+# GHGE - Garrett Hannah Game Engine
 
 ![image](image.png)
 
