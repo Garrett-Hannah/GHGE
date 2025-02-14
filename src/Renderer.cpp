@@ -39,7 +39,7 @@ void Renderer::render(Mesh& mesh, Camera& camera)
   
     shader -> setVec3("lightColor", glm::vec3(0.24, 1.0, 1.0));
 
-
+    std::cout << camera.TempLightPos.x << camera.TempLightPos.y << camera.TempLightPos.z << std::endl;
 
 	//Draw the mesh with the shader.
 	mesh.Draw(*shader);

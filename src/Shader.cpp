@@ -104,7 +104,7 @@ void Shader::setVec3(const std::string& variable, const glm::vec3& value)
 {
     int location = glGetUniformLocation(ID, variable.c_str());
         // Set the uniform value
-    glUniform3f(location, value.x, value.y, value.x);
+    glUniform3f(location, value.x, value.y, value.z);
 }
 
 
