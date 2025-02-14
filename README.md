@@ -1,6 +1,6 @@
 # GHGE
 
-![image](cowvisualizer.png)
+![image](image.png)
 
 A small attempt at a game engine.
 
