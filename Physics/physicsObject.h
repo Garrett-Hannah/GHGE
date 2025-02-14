@@ -16,3 +16,15 @@
  * but more importantly, stuff like mass, or any important parameters within. 
  *
  */
+#include <glm/glm.hpp>
+#ifndef PHYSICS_OBJECT_H
+#define PHYSICS_OBJECT_H
+
+
+class physicsObject
+{
+    glm::position
+};
+
+
+#endif

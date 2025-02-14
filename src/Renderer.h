@@ -4,16 +4,18 @@
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 #include "Shader.h"
+
 #include "Mesh.h"
 #include "Camera.h"
 #include "Window.h"
+#include "../Engine/PointLight.h"
 
 class Renderer {
 
 		Window* ghge_window;
 		Shader* shader;
-		
-		void (*backgroundDraw)();
+
+        void (*backgroundDraw)();
 	    
 
         	GLuint winWidth, winHeight;
@@ -25,7 +27,7 @@ class Renderer {
 		void setShader(Shader *shader_);
 	    void init();
         
-
+        
 
 		void setBGdrawMethod(void (*ptr)());
 		SDL_Window* getWindow(){ return ghge_window -> getSdlWindow();};		

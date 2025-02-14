@@ -147,7 +147,7 @@ int main(int argc, char* argv[]) {
     //by just returning the vert and index data 
     //as a mesh to begin with?
     ObjReader r = ObjReader();    
-	r.openObjFile("data/cow.obj");
+	r.openObjFile("data/stanford-bunny.obj");
 	r.writeToMeshBuffer();
 	vertices = r.verts;
 	indices = r.indicies;
