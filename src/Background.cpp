@@ -38,17 +38,31 @@ void Background::bgSetup(unsigned int &VAO)
 //Background drawing is now working. 
 void Background::renderBG(Shader* shader,unsigned int VAO)
 {
-	glDisable(GL_DEPTH_TEST);
+
+	if(shader != nullptr)
+    {
+        
+	    glDisable(GL_DEPTH_TEST);
     	glDepthMask(GL_FALSE);
 
-	if(shader != nullptr)shader -> use();
-	else std::cout << "ERROR: SHADER NOT DEFINED" << std::endl;
+        shader -> use();
 
-	glBindVertexArray(VAO);
+        
+        glBindVertexArray(VAO);
 
-	glDrawElements(GL_TRIANGLES, sizeof(inds) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, sizeof(inds) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
-	glDepthMask(GL_TRUE);
-    	glEnable(GL_DEPTH_TEST);
-	glBindVertexArray(0);
+        glDepthMask(GL_TRUE);
+            glEnable(GL_DEPTH_TEST);
+        glBindVertexArray(0);
+    }
+	else 
+    {
+        std::cout << "ERROR: SHADER NOT DEFINED" << std::endl;
+        
+
+        
+    }
+
+    std::cout << glGetError() << std::endl;
 }

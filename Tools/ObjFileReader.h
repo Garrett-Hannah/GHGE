@@ -12,10 +12,16 @@
 // This will be stored in our meshBuffer.
 
 
-#include <fstream>
+#include <fstream>  //File I/O operations
+#include <sstream>
 #include <iostream>
 #include <string>
 #include <chrono>
+#include <sstream>
+#include <stdexcept>
+#include <sys/types.h>
+#include <algorithm>
+
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -28,26 +34,28 @@
 
 class ObjReader
 {
-	private:
+	protected:
 	std::string readPath = "";
 	bool validReadPath = false;
 	Vertex parseVertexLine(std::string line);
 	GLuint* parseFaceLine(std::string line);
-	int lineCount = 0;
-
-
-	public:
-	ObjReader();
-	std::vector<Vertex> verts;
-	std::vector<GLuint> indicies;
+	
+    int lineCount = 0;
 
     float mnX, mnY, mnZ, mxX, mxY, mxZ;
-    
+
+	public:
+	
+    ObjReader();
+	std::vector<Vertex> verts;
+	std::vector<GLuint> indices;
+
+       
     glm::vec3 getNormScale();
     //Out OpenObjFile will read our path.
 	bool openObjFile(std::string path);
 	//Return Our MeshBuffer As a mesh.
 	//This will write from our file into our mesh buffer.
-	void writeToMeshBuffer();
+	int writeToMeshBuffer();
 	void read();
 };

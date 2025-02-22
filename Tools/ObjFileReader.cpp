@@ -5,11 +5,9 @@
 //
 //  This is our implementation for the objreader.
 #include "ObjFileReader.h"
-#include <glm/geometric.hpp>
-
 
 //set validReadPath to nothing and create a mesh.
-ObjReader::ObjReader()
+ObjReader::ObjReader() : validReadPath(false)
 {
 	std::cout << "ObjectFileReader Initialized!" << std::endl;
 	validReadPath = false;
@@ -43,14 +41,15 @@ glm::vec3 ObjReader::getNormScale()
     return glm::vec3(1 / meshSize); 
 }
 
+/*
 //read from the .obj file into our mesh object.
-void ObjReader::writeToMeshBuffer()
+int ObjReader::writeToMeshBuffer()
 {
     //If we dont have a valid read path, return
     if(!validReadPath)
     {
         std::cout << "Failed!" << std::endl;
-        return;
+        return -1;
     }
 	
 
@@ -72,7 +71,7 @@ void ObjReader::writeToMeshBuffer()
     {
         //Create some temp variables.
 	Vertex vTemp;
-	GLuint* indArr;
+	GLuint* indArr = new GLuint[3];
 
 
         //Using the first char from each line, execute seperate functions.
@@ -95,18 +94,19 @@ void ObjReader::writeToMeshBuffer()
             //face info:
             case 'f':
             	indArr = parseFaceLine(line);
-		indicies.push_back(indArr[0]);
-		indicies.push_back(indArr[1]);
-		indicies.push_back(indArr[2]);
-	    break;
+		        indices.push_back(indArr[0]);
+		        indices.push_back(indArr[1]);
+		        indices.push_back(indArr[2]);
+	        break;
         }
-	lineCount++;
+
+	    lineCount++;
     }
 
-    std::cout << lineCount << " lines in file!" << std::endl;
+    std::cout << lineCount << " lines in " << this -> readPath << std::endl;
 
-
-};
+    return 1;
+};*/
 
 
 //ParseVertextLine
@@ -114,54 +114,87 @@ void ObjReader::writeToMeshBuffer()
 //Takes a string line, and returns vertex object.
 Vertex ObjReader::parseVertexLine(std::string line)
 {
-    //Start at the beginning of the first whitespace. find the next after.
-    size_t flStart = line.find(" ");
-    size_t flEnd = line.find(" ", flStart + 1);
+    std::stringstream stream(line);
+    stream.exceptions(std::ios::badbit);
 
-    //Create an array of 3 floats.
-    float v[3];
+    std::string chunk;
+    
+    stream >> chunk;
 
-    //Iterate over each value in fVals, and convert string to float.
-    for(int i = 0; i < 3; i++)
+    Vertex v = {{0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}, {0, 0}};
+
+    int i = 0;
+    try{
+        while(stream >> chunk && i < 3){  
+            if(std::any_of(chunk.begin(), chunk.end(), ::isalpha)){
+                throw std::invalid_argument("Non-numeric chunk: " + chunk);
+            }
+            
+            v.Position[i] = stof(chunk);
+            i++;
+        }
+    }
+    catch(const std::ios_base::failure& e)
     {
-        std::string sub = line.substr(flStart, flEnd - flStart);
-
-        v[i] = stof(sub);
-
-        flStart = flEnd;
-        flEnd = line.find(" ", flStart + 1);
+        std::cerr << "Stream error: " << e.what() << std::endl;
+    }
+    catch(const std::invalid_argument& e)
+    {
+        std::cerr << "Conversion error: invalid argument: " << e.what() << std::endl;
+    }
+    catch(const std::out_of_range& e)
+    {
+        std::cerr << "Conversion error: out of range: " << e.what() << std::endl;
     }
 
-    
+    if(i < 3) std::cerr << "WARNING: Vertex contians missing values: " << line << std::endl;
 
-  //Return vert.
-    return {{v[0], v[1], v[2]}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}};
+
+    return v;
 }
 
 
 //Face line parse.
 GLuint* ObjReader::parseFaceLine(std::string line)
 {
-    size_t iStart = line.find(" ");
-    size_t iEnd = line.find(" ", iStart + 1);
+
+    std::stringstream stream(line);
+    stream.exceptions(std::ios::badbit);
+
+    std::string chunk;
+    
+    stream >> chunk;
 
     GLuint* vals = new GLuint[3];
 
-    for(int i = 0; i < 3; i++)
+    int i = 0;
+
+    try{
+        while(stream >> chunk && i < 3){  
+            if(std::any_of(chunk.begin(), chunk.end(), ::isalpha)){
+                throw std::invalid_argument("Non-numeric chunk: " + chunk);
+            }
+            
+            vals[i] = (GLuint)stoi(chunk);
+            i++;
+        }
+    }
+    catch(const std::ios_base::failure& e)
     {
-
-        std::string sub = line.substr(iStart, iEnd - iStart);
-
-        vals[i] = stoi(sub) - 1;
-
-	indicies.push_back(vals[i]);
-        iStart = iEnd;
-        iEnd = line.find(" ", iStart + 1);
+        std::cerr << "Stream error: " << e.what() << std::endl;
+    }
+    catch(const std::invalid_argument& e)
+    {
+        std::cerr << "Conversion error: invalid argument: " << e.what() << std::endl;
+    }
+    catch(const std::out_of_range& e)
+    {
+        std::cerr << "Conversion error: out of range: " << e.what() << std::endl;
     }
 
-    //As of right now, the expectation is that were gonna be returning
-    //some values.
-    
+    if(i < 3) std::cerr << "WARNING: Vertex contians missing values: " << line << std::endl;
+
+
     return vals;
 }
 
@@ -172,31 +205,52 @@ void ObjReader::read()
 {
 	if(!validReadPath)
 	{
-		std::cout << "Err: Invalid readPath! Try again. " << std::endl;
+		std::cerr << "Err: Invalid readPath! Try again. " << std::endl;
 		return;
 	}
 
 
-	std::ifstream objFile;
-	objFile.open(readPath);
+	std::ifstream objFile(readPath);
+    if (!objFile.is_open()){
+        std::cerr << "Err: Unable to open file : " << readPath << std::endl;
+        return;
+    }
 
 	std::string line;
-
 	int i = 0;
-	while(getline(objFile, line) && i < 10)
-	{
-		switch(line[0])
-		{
-			case 'v':
-				parseVertexLine(line);
-			break;
 
-			case 'f':
-				parseFaceLine(line);
-			break;
-		}
-		i++;
-	}
+    try{
+        while(getline(objFile, line) && i < 10)
+        {
+            if(line.empty()) continue;
+
+            switch(line[0])
+            {
+                case 'v': {
+                    Vertex v = parseVertexLine(line);
+                    verts.push_back(v);
+                    break;
+                }
+                case 'f': {
+                    GLuint* faceIndices = parseFaceLine(line);
+                    
+                    for(int i = 0; i < 3; i++) this -> indices.push_back(faceIndices[i]);
+
+                    delete[] faceIndices;
+
+                    break;
+                
+                }
+                
+                default:
+                    std::cerr << "Warning: Unsupported line type: " << line << std::endl;
+            
+            }
+            i++;
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "Error parsing OBJ file: " << e.what() << " (line " << i << ")" << std::endl;
+    }
 
 	objFile.close();
 };

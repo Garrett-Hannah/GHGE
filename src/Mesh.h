@@ -24,9 +24,9 @@ struct Texture {
 
 class Mesh {
 	public:
-		std::vector<Vertex> 		vertices;
+		std::vector<Vertex> 	vertices;
 		std::vector<GLuint>	 	indices;
-		std::vector<Texture>		textures;
+		std::vector<Texture>	textures;
 
 		glm::vec3 modelPosition;
         	glm::vec3 modelScale;

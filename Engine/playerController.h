@@ -1,12 +1,13 @@
 #include "../src/Mesh.h"
 #include "inputManager.h"
+#include <glm/ext/matrix_float4x4.hpp>
 
 class Controller
 {
     public:    
     glm::vec3 currentPos;
-    float camYaw = 0.0f;
-    float camPitch = 0.0f;
+    float camYaw = 0.25f;
+    float camPitch = 0.5f;
 
     InputManager* inputManager;
 
@@ -21,8 +22,12 @@ class Controller
 
     glm::vec3 getCameraTarget(const glm::vec3& camPos);
 
+
+    glm::vec3 getTranslation();
+
     private:
         int oldMouseX;
         int oldMouseY;
+
 
 };

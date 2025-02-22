@@ -13,7 +13,8 @@ namespace tmp
 
 void Renderer::render(Mesh& mesh, Camera& camera)
 {
-	//Get the view matrix, projection matrix.
+
+    //Get the view matrix, projection matrix.
 	glm::mat4 view = camera.getViewMatrix();
 
 	GLint winWidth, winHeight;
@@ -142,5 +143,7 @@ void Renderer::swapwindow()
 //Set the shader to the shader pointer passed into the function.
 void Renderer::setShader(Shader *shader_)
 {
-	shader = shader_;
+	if(shader_ == nullptr) std::cerr << "ERROR: shader set to null value!" << std::endl;
+    shader = shader_;
+    
 }

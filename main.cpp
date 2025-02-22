@@ -121,10 +121,16 @@ int main(int argc, char* argv[]) {
     //As of right now, its just 
     //Meshes and Shader referrences being stored.
     //Its just better to have them in one spot. 
-    std::vector<Shader*> shaders;
-    std::vector<Mesh*> meshes;
+    std::vector<Shader*> shaders(2);
 
-    shaders.push_back(new Shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl"));
+
+    shaders[0] = new Shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl");
+
+    //Push back shaders for background.
+    //Then setup the background vbo
+    shaders[1] = (new Shader("shaders/bgVshader.glsl", "shaders/bgFshader.glsl"));
+    
+    std::cout << (shaders[1] != nullptr) << std::endl;
 
 	std::cout << "Shader Created" << std::endl;
 
@@ -136,8 +142,7 @@ int main(int argc, char* argv[]) {
     //Buffer of sorts.
 
 	glClearColor(0.28f, 0.4f, 0.75f, 1.0f);
-	std::vector<Vertex> vertices;
-	std::vector<GLuint> indices;
+	
 
 
     //Open up the file reader. Then store 
@@ -146,11 +151,18 @@ int main(int argc, char* argv[]) {
     //I think it can be shortened 
     //by just returning the vert and index data 
     //as a mesh to begin with?
-    ObjReader r = ObjReader();    
-	r.openObjFile("data/stanford-bunny.obj");
-	r.writeToMeshBuffer();
-	vertices = r.verts;
-	indices = r.indicies;
+
+    //ObjReader r = ObjReader();    
+	//r.openObjFile("data/teapot.obj");
+	//r.read();
+    
+    //std::cout << "written..." << std::endl;
+    
+
+    //std::vector<Vertex> vertices = r.verts;
+	//std::vector<GLuint> indices = r.indices;
+    
+    std::cout << "a" << std::endl;
 
     //Push back a texture.
     //I dont even want to know how this is going
@@ -160,16 +172,23 @@ int main(int argc, char* argv[]) {
 
     //Creates a new mesh, with
     //the mesh data from earlier
+    
+    /*
 	meshes.push_back(new Mesh(vertices, indices, textures));
     meshes[0] -> calculateNormals();
     meshes[0] -> modelScale = r.getNormScale();
     meshes[0] -> modelScale *= 10.0f;
     meshes[0] -> modelPosition += glm::vec3(0.0, 1.4, 0.0);
+    /
+
+    std::cout << "hello" << std::endl;
     meshes[0] -> setupMesh();
-    //Push back shaders for background.
-    //Then setup the background vbo
-    shaders.push_back(new Shader("shaders/bgVshader.glsl", "shaders/bgFshader.glsl"));
+    */
+
+    
     bgSetup();
+
+    //if(meshes[0] != nullptr) std::cout << "Meshes available." << std::endl;
 
     //Here is just more meshes. 
     //
@@ -183,10 +202,10 @@ int main(int argc, char* argv[]) {
     std::vector<GLuint> indices2 = {
         3, 1, 2, 2, 1, 0
     };
-
-    meshes.push_back( new Mesh( vertices2, indices2, textures ) );
-    meshes[1] -> setupMesh(); 
     
+    Mesh mesh(vertices2, indices2, textures);
+
+    /*
     std::vector<Vertex> vertices3 = {
         {{-10.0f,  0.0f, 10.0f}, { 0.0f,  1.0,  0.0f}, {0.0f, 1.0f}}, // Top-left (Top face)
         {{ 10.0f,  0.0f, 10.0f}, { 0.0f,  1.0f,  0.0f}, {1.0f, 1.0f}}, // Top-right
@@ -201,8 +220,10 @@ int main(int argc, char* argv[]) {
     
     meshes[2] -> modelScale *= 0.2;
     meshes[2] -> modelPosition += glm::vec3(0.0, 4.0, 1.0);
-    meshes[2] -> setupMesh();
+    //meshes[2] -> setupMesh();
     //Here is the camera initialization.	
+    */
+
     Camera camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 	glm::vec3 camPos = glm::vec3( -1.0f, 0.0f, 0.0f );
@@ -245,11 +266,11 @@ int main(int argc, char* argv[]) {
         if(input.isKeyDown(KEY_M)) camera.TempLightPos += glm::vec3(-0.1, 0.0, 0.0);
         if(input.isKeyDown(KEY_H)) camera.TempLightPos += glm::vec3(0.0, 0.0f, 0.1);
         
-        meshes[2] -> modelPosition = camera.TempLightPos;
+        //meshes[2] -> modelPosition = camera.TempLightPos;
 
         translation = player.currentPos;
 
-        translation = translation * 0.25f;
+        translation = translation * 0.005f;
         
         
         //Really this stuff should/could be theoretically handled.
@@ -292,17 +313,15 @@ int main(int argc, char* argv[]) {
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
         //Draw the background.
-        bgDraw(shaders[1]);
+        //bgDraw(shaders[1]);
         
         
         //Final step. render the meshes.
         //This is done last, because of course it is.
         //After all, this wont be too important. 
         //Because its all done now.
-        for(Mesh* mesh : meshes )
-        {
-            renderer.render(*mesh, camera);
-        }
+        renderer.render(mesh, camera);
+
 
         //Although i might want to get some post-processing effect
         //in this, and that will drastically change code.

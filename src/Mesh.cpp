@@ -15,7 +15,7 @@ Mesh::Mesh(std::vector<Vertex> vertices, std::vector<GLuint> indices, std::vecto
 	
 
 	//calculateNormals();
-	//setupMesh();
+	setupMesh();
 }
 
 void Mesh::calculateNormals()
@@ -70,6 +70,8 @@ void Mesh::setupMesh()
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, TexCoords));
 
     glBindVertexArray(0);
+
+    std::cout << glGetError() << std::endl;
 }
 
 void Mesh::Draw(Shader &shader)

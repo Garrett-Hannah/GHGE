@@ -28,7 +28,6 @@ glm::vec3 Controller::getMoveDir()
         {
 		    translation += glm::vec3(0.0f, 1.0f, 0.0f);
 	    }
-	    
         if ( inputManager -> isKeyPressed( KEY_LEFT_SHIFT ) )
 	    {
 		    translation += glm::vec3(0.0f, -1.0f, 0.0f);
@@ -52,10 +51,11 @@ glm::vec3 Controller::getCameraTarget(const glm::vec3& camPos)
 
 void Controller::ProcessUpdate()
 {
+    currentPos *= 0.95;
     if(inputManager == nullptr) return;
 
         camYaw -= float(inputManager -> getMouseVelX()) / 150.0f;    
-        camPitch += float(inputManager -> getMouseVelY()) / 300.0f;
+        camPitch -= float(inputManager -> getMouseVelY()) / 300.0f;
 
 	    if (inputManager -> isKeyPressed( KEY_O ))
 	    {
@@ -80,5 +80,6 @@ void Controller::ProcessUpdate()
             this -> currentPos = glm::vec3(0.0f, 0.0f, 0.0f); 
         }
 
-        currentPos = getMoveDir();
+        currentPos += getMoveDir();
 }
+
