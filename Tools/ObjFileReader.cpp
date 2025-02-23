@@ -1,9 +1,33 @@
-//ObjFile reader implementation
+//  ObjFile reader implementation
 //
 //
 //  (C) Garrett Hannah, 2024
 //
-//  This is our implementation for the objreader.
+//  INSTRUCTIONS:
+//  1. Create OBJ reader. (construct)
+//  2. set obj file path. (openOBJfile)
+//  3. read() function.
+//
+//  then youll want to pull vert and whatnot data from 
+//  the verts and indices parameters. 
+//
+//  of course i should be making this better but oh well.
+//  Im also not sure how well kept everything is 
+//  in terms of like, (stuff) but oh well.
+//
+//  So mostly i should probably focus on something
+//  actually important. Like the fact that i have 
+//  absolutely zero (and i mean ZERO) clue about 
+//  what i have going on with deep copies and whatnot.
+//
+//  Especially with like data deletion and stuff. that 
+//  is not at all created or anything.
+//  so im probably cooked
+//
+//  Anyways this little bit of code works well enough 
+//  indeed that i can just use it in my program
+//  without really caring at all! yay.
+
 #include "ObjFileReader.h"
 
 //set validReadPath to nothing and create a mesh.
@@ -29,10 +53,13 @@ bool ObjReader::openObjFile(std::string path)
 	validReadPath = true;
 
 	return true;
-
 };
 
+
+
 //Returns a normalized version of the scale...
+//This is just calculated based on the min values, then normalizing it and dividing it into a semi standardized size.
+//Idk it works lol
 glm::vec3 ObjReader::getNormScale()
 {
     float meshSize = glm::length(glm::vec3(mxX, mxY, mxZ) - glm::vec3(mnX, mnY, mnZ)); 
@@ -41,72 +68,6 @@ glm::vec3 ObjReader::getNormScale()
     return glm::vec3(1 / meshSize); 
 }
 
-/*
-//read from the .obj file into our mesh object.
-int ObjReader::writeToMeshBuffer()
-{
-    //If we dont have a valid read path, return
-    if(!validReadPath)
-    {
-        std::cout << "Failed!" << std::endl;
-        return -1;
-    }
-	
-
-    lineCount = 0;
-    //create an inputstream and open the file.
-    std::ifstream objFile;
-    objFile.open(readPath);
-
-    //Store lines from file in a string
-    std::string line;
-
-    //Loop through each line in the .obj file.
-    //there is two commands important to us.
-    //1) 'v' - this implies a vertex in 3d space.
-    //2) 'f' - this implies a face, printed from _ - _ - _.
-    // NOTE: 2 is having troubles so far. i believe it has to do with
-    // the way that i draw lines.
-    while(getline(objFile, line))
-    {
-        //Create some temp variables.
-	Vertex vTemp;
-	GLuint* indArr = new GLuint[3];
-
-
-        //Using the first char from each line, execute seperate functions.
-        switch(line[0])
-        {
-            // vertex info:
-            case 'v':
-                vTemp = parseVertexLine(line);
-                mnX = std::min(mnX, vTemp.Position.x);
-                mnY = std::min(mnY, vTemp.Position.y);
-                mnZ = std::min(mnZ, vTemp.Position.z);
-                
-                mxX = std::max(mxX, vTemp.Position.x);
-                mxY = std::max(mxY, vTemp.Position.y);
-                mxZ = std::max(mxZ, vTemp.Position.z);
-                verts.push_back(vTemp);
-
-            break;
-
-            //face info:
-            case 'f':
-            	indArr = parseFaceLine(line);
-		        indices.push_back(indArr[0]);
-		        indices.push_back(indArr[1]);
-		        indices.push_back(indArr[2]);
-	        break;
-        }
-
-	    lineCount++;
-    }
-
-    std::cout << lineCount << " lines in " << this -> readPath << std::endl;
-
-    return 1;
-};*/
 
 
 //ParseVertextLine
@@ -175,7 +136,7 @@ GLuint* ObjReader::parseFaceLine(std::string line)
                 throw std::invalid_argument("Non-numeric chunk: " + chunk);
             }
             
-            vals[i] = (GLuint)stoi(chunk);
+            vals[i] = (GLuint)stoi(chunk) - 1;
             i++;
         }
     }
@@ -220,7 +181,7 @@ void ObjReader::read()
 	int i = 0;
 
     try{
-        while(getline(objFile, line) && i < 10)
+        while(getline(objFile, line))
         {
             if(line.empty()) continue;
 
@@ -228,15 +189,25 @@ void ObjReader::read()
             {
                 case 'v': {
                     Vertex v = parseVertexLine(line);
+                    
+                    mnX = std::min(v.Position.x, mnX);
+                    mnY = std::min(v.Position.y, mnY);
+                    mnZ = std::min(v.Position.z, mnZ);
+
+                    mxX = std::max(v.Position.x, mnX);
+                    mxY = std::max(v.Position.y, mnY);
+                    mxZ = std::max(v.Position.z, mnZ);
+
                     verts.push_back(v);
                     break;
                 }
+                
                 case 'f': {
                     GLuint* faceIndices = parseFaceLine(line);
                     
-                    for(int i = 0; i < 3; i++) this -> indices.push_back(faceIndices[i]);
-
-                    delete[] faceIndices;
+                    this -> indices.push_back(faceIndices[0]);
+                    this -> indices.push_back(faceIndices[1]);
+                    this -> indices.push_back(faceIndices[2]);
 
                     break;
                 
@@ -253,4 +224,5 @@ void ObjReader::read()
     }
 
 	objFile.close();
+    std::cout << i << " lines. Completed Reading." << std::endl;
 };

@@ -152,10 +152,13 @@ int main(int argc, char* argv[]) {
     //by just returning the vert and index data 
     //as a mesh to begin with?
 
-    //ObjReader r = ObjReader();    
-	//r.openObjFile("data/teapot.obj");
-	//r.read();
+    ObjReader r = ObjReader();    
+	r.openObjFile("data/teapot.obj");
+	r.read();
     
+    std::vector<Vertex> verts;
+    std::vector<GLuint> inds;
+
     //std::cout << "written..." << std::endl;
     
 
@@ -203,8 +206,14 @@ int main(int argc, char* argv[]) {
         3, 1, 2, 2, 1, 0
     };
     
-    Mesh mesh(vertices2, indices2, textures);
+    verts = r.verts;
+    inds = r.indices;
 
+
+
+    Mesh mesh(verts, inds, textures);
+    
+    //mesh.calculateNormals();
     /*
     std::vector<Vertex> vertices3 = {
         {{-10.0f,  0.0f, 10.0f}, { 0.0f,  1.0,  0.0f}, {0.0f, 1.0f}}, // Top-left (Top face)
@@ -313,7 +322,7 @@ int main(int argc, char* argv[]) {
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
         //Draw the background.
-        //bgDraw(shaders[1]);
+        bgDraw(shaders[1]);
         
         
         //Final step. render the meshes.
