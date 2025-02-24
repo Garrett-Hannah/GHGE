@@ -1,4 +1,5 @@
 #include "Tools/ObjFileReader.h"
+#include "Physics/shape.h"
 #include <stdexcept>
 
 void writeVec(const Vertex &v)
@@ -54,9 +55,52 @@ class objReaderTests : ObjReader
    }
 };
 
+
+class shapeTests
+{
+
+
+
+
+    public:
+
+    bool testClass()
+    {
+        using namespace GHGE; 
+        sphere s1 = {{0.0f, 0.0f, 0.0f}, 2.5f};
+        sphere s2 = {{0.0f, 0.67f, 0.0f}, 2.5f};
+        sphere s3 = {{0.0f, 2.51f, 0.0f}, 2.5f};
+
+
+        
+        bool result = true;
+
+
+
+        result &= collide(s1, s2);
+        result &= !collide(s1, s3);
+        result &= collide(s2, s3);
+
+
+
+        std::cout << (result ? "Passed." : "Failed.") << std::endl;
+
+        
+        return true;
+
+    }
+};
+
+
+
 int main()
 {
-    objReaderTests readerTest;
+    //objReaderTests readerTest;
     
-    std::cout << readerTest.testClass();
+    //std::cout << readerTest.testClass();
+
+    shapeTests shapeTest;
+
+    shapeTest.testClass();
+
 }

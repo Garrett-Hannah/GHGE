@@ -40,7 +40,14 @@ namespace GHGE
     };
 
 
+    //bool collide(const cube& c, const sphere& s)
+    //{
+
+    //}
+    
     bool collide(const cube& c, const sphere& s);
+
+    bool collide(const GHGE::sphere& s1, const GHGE::sphere& s2);
     void drawCube(const cube& c);    
 }
 
