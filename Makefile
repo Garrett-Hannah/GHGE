@@ -8,7 +8,7 @@ LDFLAGS = -lGL -lGLU -lSDL2 -lGLEW
 
 ROOT_DIR = .
 
-SRC_DIRS = src Tools Engine
+SRC_DIRS = src Tools Engine Physics
 
 
 SRC = $(wildcard $(ROOT_DIR)/main.cpp) $(shell find $(SRC_DIRS) -name '*.cpp')

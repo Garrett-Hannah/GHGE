@@ -38,7 +38,7 @@ void Renderer::render(Mesh& mesh, Camera& camera)
     shader -> setVec3("lightPos_world", camera.TempLightPos);
     shader -> setVec3("viewPos_world", camera.getPosition()); 
   
-    shader -> setVec3("lightColor", glm::vec3(0.24, 1.0, 1.0));
+    shader -> setVec3("lightColor", mesh.color);
     shader -> setFloat("t_value", tmp::tmpVal += 0.01);
 
 	//Draw the mesh with the shader.

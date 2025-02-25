@@ -213,6 +213,7 @@ int main(int argc, char* argv[]) {
 
     Mesh mesh(verts, inds, textures);
     
+    mesh.color = glm::vec3(0.0f, 1.0f, 0.0f);    
     //mesh.calculateNormals();
     /*
     std::vector<Vertex> vertices3 = {
@@ -252,9 +253,12 @@ int main(int argc, char* argv[]) {
 
     camera.TempLightPos = glm::vec3(0.0);
     
+    float tempTime = 0.0f;
+
     //The running bool just decides when to terminate the program.
     while ( !input.quitRequested() ) 
     {
+        tempTime += 0.01f;
         //This is the main structure of the actual gameloop.
         //What it does is create an event, and see what has been pressed.
         //Pretty much?
@@ -268,6 +272,8 @@ int main(int argc, char* argv[]) {
         //either inputs, Or individual object logic).
         player.ProcessUpdate();
     
+        mesh.color = {0.25, sin(tempTime), cos(tempTime)};
+
         if(input.isKeyDown(KEY_J)) camera.TempLightPos += glm::vec3(0.0, 0.1f, 0.0);
         if(input.isKeyDown(KEY_K)) camera.TempLightPos += glm::vec3(0.0, -0.1f, 0.0);
         if(input.isKeyDown(KEY_B)) camera.TempLightPos += glm::vec3(0.1, 0.0, 0.0);

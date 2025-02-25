@@ -4,10 +4,18 @@
 
 #include "shape.h"
 
-bool GHGE::collide(const GHGE::sphere &s1, const GHGE::sphere &s2)
-{
+namespace GHGE{
+    //Function for colliding
+    bool collide(const sphere& s1, const sphere& s2)
+    {
         glm::vec3 v3_dist = s2.position - s1.position;
+       
+        float distSquared = 0;
 
+        for(int i = 0; i < 3; i++){
+            distSquared += v3_dist[i] * v3_dist[i];
+        }
 
-        return v3_dist.length() < (s2.radius + s1.radius);
+        return distSquared <= (s2.radius + s1.radius);
+    }
 }

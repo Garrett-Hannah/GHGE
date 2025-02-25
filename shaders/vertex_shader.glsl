@@ -32,8 +32,8 @@ void main() {
     //This the actual place where you mess with position.. anything else is 
     //going to do weird things.
 
-    fragPos_world += vec4(0.0, 0.1 * sin(t_value * 0.1 + fragPos_world.x + fragPos_world.z), 0.0, 0.0);
-    
+    fragPos_world += vec4(0.0, 0.14 * sin(t_value * 1.0 + fragPos_world.x * 2.0 + fragPos_world.z * 2.0), 0.0, 0.0);
+
 
 
 

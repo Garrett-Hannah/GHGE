@@ -11,7 +11,7 @@
 
 #include <glm/vec3.hpp>
 #include <GL/gl.h>
-
+#include <iostream>
 
 #ifndef SHAPE_H
 #define SHAPE_H 
@@ -47,7 +47,7 @@ namespace GHGE
     
     bool collide(const cube& c, const sphere& s);
 
-    bool collide(const GHGE::sphere& s1, const GHGE::sphere& s2);
+    bool collide(const sphere& s1, const sphere& s2);
     void drawCube(const cube& c);    
 }
 

@@ -28,6 +28,8 @@ class Mesh {
 		std::vector<GLuint>	 	indices;
 		std::vector<Texture>	textures;
 
+        glm::vec3 color = {0, 0, 0};
+
 		glm::vec3 modelPosition;
         	glm::vec3 modelScale;
 		glm::vec3 modelRotation;
