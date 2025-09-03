@@ -3,6 +3,11 @@
 
 Shader::Shader(const std::string &vertexPath, const std::string& fragmentPath)
 {
+	std::string defaultPath = "data/shaders/";
+
+	vertexPath = defaultPath.append(vertexPath);
+	fragmentPath = defaultPath.append(fragmentPath);
+
 	std::cout << vertexPath << std::endl;
 	std::cout <<fragmentPath << std::endl;
 

@@ -69,83 +69,131 @@ include CMakeFiles/tests.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/tests.dir/flags.make
 
-CMakeFiles/tests.dir/test.cpp.o: CMakeFiles/tests.dir/flags.make
-CMakeFiles/tests.dir/test.cpp.o: test.cpp
-CMakeFiles/tests.dir/test.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tests.dir/test.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/test.cpp.o -MF CMakeFiles/tests.dir/test.cpp.o.d -o CMakeFiles/tests.dir/test.cpp.o -c /home/ghann/GHGE/test.cpp
+CMakeFiles/tests.dir/test/test.cpp.o: CMakeFiles/tests.dir/flags.make
+CMakeFiles/tests.dir/test/test.cpp.o: test/test.cpp
+CMakeFiles/tests.dir/test/test.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/tests.dir/test/test.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/test/test.cpp.o -MF CMakeFiles/tests.dir/test/test.cpp.o.d -o CMakeFiles/tests.dir/test/test.cpp.o -c /home/ghann/GHGE/test/test.cpp
 
-CMakeFiles/tests.dir/test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/test.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/test.cpp > CMakeFiles/tests.dir/test.cpp.i
+CMakeFiles/tests.dir/test/test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/test/test.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/test/test.cpp > CMakeFiles/tests.dir/test/test.cpp.i
 
-CMakeFiles/tests.dir/test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/test.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/test.cpp -o CMakeFiles/tests.dir/test.cpp.s
+CMakeFiles/tests.dir/test/test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/test/test.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/test/test.cpp -o CMakeFiles/tests.dir/test/test.cpp.s
 
-CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o: CMakeFiles/tests.dir/flags.make
-CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o: Physics/bunnyPhysics.cpp
-CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o -MF CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o.d -o CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o -c /home/ghann/GHGE/Physics/bunnyPhysics.cpp
+CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o: CMakeFiles/tests.dir/flags.make
+CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o: src/Engine/PointLight.cpp
+CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o -MF CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o.d -o CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o -c /home/ghann/GHGE/src/Engine/PointLight.cpp
 
-CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/Physics/bunnyPhysics.cpp > CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.i
+CMakeFiles/tests.dir/src/Engine/PointLight.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/src/Engine/PointLight.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Engine/PointLight.cpp > CMakeFiles/tests.dir/src/Engine/PointLight.cpp.i
 
-CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/Physics/bunnyPhysics.cpp -o CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.s
+CMakeFiles/tests.dir/src/Engine/PointLight.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/src/Engine/PointLight.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Engine/PointLight.cpp -o CMakeFiles/tests.dir/src/Engine/PointLight.cpp.s
 
-CMakeFiles/tests.dir/Physics/physicsObject.cpp.o: CMakeFiles/tests.dir/flags.make
-CMakeFiles/tests.dir/Physics/physicsObject.cpp.o: Physics/physicsObject.cpp
-CMakeFiles/tests.dir/Physics/physicsObject.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tests.dir/Physics/physicsObject.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/Physics/physicsObject.cpp.o -MF CMakeFiles/tests.dir/Physics/physicsObject.cpp.o.d -o CMakeFiles/tests.dir/Physics/physicsObject.cpp.o -c /home/ghann/GHGE/Physics/physicsObject.cpp
+CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o: CMakeFiles/tests.dir/flags.make
+CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o: src/Engine/inputManager.cpp
+CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o -MF CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o.d -o CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o -c /home/ghann/GHGE/src/Engine/inputManager.cpp
 
-CMakeFiles/tests.dir/Physics/physicsObject.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/Physics/physicsObject.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/Physics/physicsObject.cpp > CMakeFiles/tests.dir/Physics/physicsObject.cpp.i
+CMakeFiles/tests.dir/src/Engine/inputManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/src/Engine/inputManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Engine/inputManager.cpp > CMakeFiles/tests.dir/src/Engine/inputManager.cpp.i
 
-CMakeFiles/tests.dir/Physics/physicsObject.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/Physics/physicsObject.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/Physics/physicsObject.cpp -o CMakeFiles/tests.dir/Physics/physicsObject.cpp.s
+CMakeFiles/tests.dir/src/Engine/inputManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/src/Engine/inputManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Engine/inputManager.cpp -o CMakeFiles/tests.dir/src/Engine/inputManager.cpp.s
 
-CMakeFiles/tests.dir/Physics/shape.cpp.o: CMakeFiles/tests.dir/flags.make
-CMakeFiles/tests.dir/Physics/shape.cpp.o: Physics/shape.cpp
-CMakeFiles/tests.dir/Physics/shape.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/tests.dir/Physics/shape.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/Physics/shape.cpp.o -MF CMakeFiles/tests.dir/Physics/shape.cpp.o.d -o CMakeFiles/tests.dir/Physics/shape.cpp.o -c /home/ghann/GHGE/Physics/shape.cpp
+CMakeFiles/tests.dir/src/Engine/playerController.cpp.o: CMakeFiles/tests.dir/flags.make
+CMakeFiles/tests.dir/src/Engine/playerController.cpp.o: src/Engine/playerController.cpp
+CMakeFiles/tests.dir/src/Engine/playerController.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/tests.dir/src/Engine/playerController.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/src/Engine/playerController.cpp.o -MF CMakeFiles/tests.dir/src/Engine/playerController.cpp.o.d -o CMakeFiles/tests.dir/src/Engine/playerController.cpp.o -c /home/ghann/GHGE/src/Engine/playerController.cpp
 
-CMakeFiles/tests.dir/Physics/shape.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/Physics/shape.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/Physics/shape.cpp > CMakeFiles/tests.dir/Physics/shape.cpp.i
+CMakeFiles/tests.dir/src/Engine/playerController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/src/Engine/playerController.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Engine/playerController.cpp > CMakeFiles/tests.dir/src/Engine/playerController.cpp.i
 
-CMakeFiles/tests.dir/Physics/shape.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/Physics/shape.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/Physics/shape.cpp -o CMakeFiles/tests.dir/Physics/shape.cpp.s
+CMakeFiles/tests.dir/src/Engine/playerController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/src/Engine/playerController.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Engine/playerController.cpp -o CMakeFiles/tests.dir/src/Engine/playerController.cpp.s
+
+CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o: CMakeFiles/tests.dir/flags.make
+CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o: src/Physics/bunnyPhysics.cpp
+CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o -MF CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o.d -o CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o -c /home/ghann/GHGE/src/Physics/bunnyPhysics.cpp
+
+CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Physics/bunnyPhysics.cpp > CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.i
+
+CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Physics/bunnyPhysics.cpp -o CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.s
+
+CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o: CMakeFiles/tests.dir/flags.make
+CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o: src/Physics/physicsObject.cpp
+CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o -MF CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o.d -o CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o -c /home/ghann/GHGE/src/Physics/physicsObject.cpp
+
+CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Physics/physicsObject.cpp > CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.i
+
+CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Physics/physicsObject.cpp -o CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.s
+
+CMakeFiles/tests.dir/src/Physics/shape.cpp.o: CMakeFiles/tests.dir/flags.make
+CMakeFiles/tests.dir/src/Physics/shape.cpp.o: src/Physics/shape.cpp
+CMakeFiles/tests.dir/src/Physics/shape.cpp.o: CMakeFiles/tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/tests.dir/src/Physics/shape.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/tests.dir/src/Physics/shape.cpp.o -MF CMakeFiles/tests.dir/src/Physics/shape.cpp.o.d -o CMakeFiles/tests.dir/src/Physics/shape.cpp.o -c /home/ghann/GHGE/src/Physics/shape.cpp
+
+CMakeFiles/tests.dir/src/Physics/shape.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/tests.dir/src/Physics/shape.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Physics/shape.cpp > CMakeFiles/tests.dir/src/Physics/shape.cpp.i
+
+CMakeFiles/tests.dir/src/Physics/shape.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/tests.dir/src/Physics/shape.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Physics/shape.cpp -o CMakeFiles/tests.dir/src/Physics/shape.cpp.s
 
 # Object files for target tests
 tests_OBJECTS = \
-"CMakeFiles/tests.dir/test.cpp.o" \
-"CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o" \
-"CMakeFiles/tests.dir/Physics/physicsObject.cpp.o" \
-"CMakeFiles/tests.dir/Physics/shape.cpp.o"
+"CMakeFiles/tests.dir/test/test.cpp.o" \
+"CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o" \
+"CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o" \
+"CMakeFiles/tests.dir/src/Engine/playerController.cpp.o" \
+"CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o" \
+"CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o" \
+"CMakeFiles/tests.dir/src/Physics/shape.cpp.o"
 
 # External object files for target tests
 tests_EXTERNAL_OBJECTS =
 
-tests: CMakeFiles/tests.dir/test.cpp.o
-tests: CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o
-tests: CMakeFiles/tests.dir/Physics/physicsObject.cpp.o
-tests: CMakeFiles/tests.dir/Physics/shape.cpp.o
-tests: CMakeFiles/tests.dir/build.make
-tests: CMakeFiles/tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable tests"
+bin/tests: CMakeFiles/tests.dir/test/test.cpp.o
+bin/tests: CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o
+bin/tests: CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o
+bin/tests: CMakeFiles/tests.dir/src/Engine/playerController.cpp.o
+bin/tests: CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o
+bin/tests: CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o
+bin/tests: CMakeFiles/tests.dir/src/Physics/shape.cpp.o
+bin/tests: CMakeFiles/tests.dir/build.make
+bin/tests: CMakeFiles/tests.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable bin/tests"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tests.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/tests.dir/build: tests
+CMakeFiles/tests.dir/build: bin/tests
 .PHONY : CMakeFiles/tests.dir/build
 
 CMakeFiles/tests.dir/clean:

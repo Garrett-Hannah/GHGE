@@ -152,134 +152,215 @@ tests/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
 .PHONY : tests/fast
 
-Physics/bunnyPhysics.o: Physics/bunnyPhysics.cpp.o
-.PHONY : Physics/bunnyPhysics.o
+src/Engine/PointLight.o: src/Engine/PointLight.cpp.o
+.PHONY : src/Engine/PointLight.o
 
 # target to build an object file
-Physics/bunnyPhysics.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o
-.PHONY : Physics/bunnyPhysics.cpp.o
+src/Engine/PointLight.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o
+.PHONY : src/Engine/PointLight.cpp.o
 
-Physics/bunnyPhysics.i: Physics/bunnyPhysics.cpp.i
-.PHONY : Physics/bunnyPhysics.i
+src/Engine/PointLight.i: src/Engine/PointLight.cpp.i
+.PHONY : src/Engine/PointLight.i
 
 # target to preprocess a source file
-Physics/bunnyPhysics.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.i
-.PHONY : Physics/bunnyPhysics.cpp.i
+src/Engine/PointLight.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Engine/PointLight.cpp.i
+.PHONY : src/Engine/PointLight.cpp.i
 
-Physics/bunnyPhysics.s: Physics/bunnyPhysics.cpp.s
-.PHONY : Physics/bunnyPhysics.s
+src/Engine/PointLight.s: src/Engine/PointLight.cpp.s
+.PHONY : src/Engine/PointLight.s
 
 # target to generate assembly for a file
-Physics/bunnyPhysics.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.s
-.PHONY : Physics/bunnyPhysics.cpp.s
+src/Engine/PointLight.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Engine/PointLight.cpp.s
+.PHONY : src/Engine/PointLight.cpp.s
 
-Physics/physicsObject.o: Physics/physicsObject.cpp.o
-.PHONY : Physics/physicsObject.o
+src/Engine/inputManager.o: src/Engine/inputManager.cpp.o
+.PHONY : src/Engine/inputManager.o
 
 # target to build an object file
-Physics/physicsObject.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/Physics/physicsObject.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Physics/physicsObject.cpp.o
-.PHONY : Physics/physicsObject.cpp.o
+src/Engine/inputManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o
+.PHONY : src/Engine/inputManager.cpp.o
 
-Physics/physicsObject.i: Physics/physicsObject.cpp.i
-.PHONY : Physics/physicsObject.i
+src/Engine/inputManager.i: src/Engine/inputManager.cpp.i
+.PHONY : src/Engine/inputManager.i
 
 # target to preprocess a source file
-Physics/physicsObject.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/Physics/physicsObject.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Physics/physicsObject.cpp.i
-.PHONY : Physics/physicsObject.cpp.i
+src/Engine/inputManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Engine/inputManager.cpp.i
+.PHONY : src/Engine/inputManager.cpp.i
 
-Physics/physicsObject.s: Physics/physicsObject.cpp.s
-.PHONY : Physics/physicsObject.s
+src/Engine/inputManager.s: src/Engine/inputManager.cpp.s
+.PHONY : src/Engine/inputManager.s
 
 # target to generate assembly for a file
-Physics/physicsObject.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/Physics/physicsObject.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Physics/physicsObject.cpp.s
-.PHONY : Physics/physicsObject.cpp.s
+src/Engine/inputManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Engine/inputManager.cpp.s
+.PHONY : src/Engine/inputManager.cpp.s
 
-Physics/shape.o: Physics/shape.cpp.o
-.PHONY : Physics/shape.o
+src/Engine/playerController.o: src/Engine/playerController.cpp.o
+.PHONY : src/Engine/playerController.o
 
 # target to build an object file
-Physics/shape.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/Physics/shape.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Physics/shape.cpp.o
-.PHONY : Physics/shape.cpp.o
+src/Engine/playerController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Engine/playerController.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Engine/playerController.cpp.o
+.PHONY : src/Engine/playerController.cpp.o
 
-Physics/shape.i: Physics/shape.cpp.i
-.PHONY : Physics/shape.i
+src/Engine/playerController.i: src/Engine/playerController.cpp.i
+.PHONY : src/Engine/playerController.i
 
 # target to preprocess a source file
-Physics/shape.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/Physics/shape.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Physics/shape.cpp.i
-.PHONY : Physics/shape.cpp.i
+src/Engine/playerController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Engine/playerController.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Engine/playerController.cpp.i
+.PHONY : src/Engine/playerController.cpp.i
 
-Physics/shape.s: Physics/shape.cpp.s
-.PHONY : Physics/shape.s
+src/Engine/playerController.s: src/Engine/playerController.cpp.s
+.PHONY : src/Engine/playerController.s
 
 # target to generate assembly for a file
-Physics/shape.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/Physics/shape.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/Physics/shape.cpp.s
-.PHONY : Physics/shape.cpp.s
+src/Engine/playerController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Engine/playerController.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Engine/playerController.cpp.s
+.PHONY : src/Engine/playerController.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+src/Physics/bunnyPhysics.o: src/Physics/bunnyPhysics.cpp.o
+.PHONY : src/Physics/bunnyPhysics.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/Physics/bunnyPhysics.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o
+.PHONY : src/Physics/bunnyPhysics.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+src/Physics/bunnyPhysics.i: src/Physics/bunnyPhysics.cpp.i
+.PHONY : src/Physics/bunnyPhysics.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/Physics/bunnyPhysics.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.i
+.PHONY : src/Physics/bunnyPhysics.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+src/Physics/bunnyPhysics.s: src/Physics/bunnyPhysics.cpp.s
+.PHONY : src/Physics/bunnyPhysics.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/Physics/bunnyPhysics.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.s
+.PHONY : src/Physics/bunnyPhysics.cpp.s
 
-test.o: test.cpp.o
-.PHONY : test.o
+src/Physics/physicsObject.o: src/Physics/physicsObject.cpp.o
+.PHONY : src/Physics/physicsObject.o
 
 # target to build an object file
-test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test.cpp.o
-.PHONY : test.cpp.o
+src/Physics/physicsObject.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o
+.PHONY : src/Physics/physicsObject.cpp.o
 
-test.i: test.cpp.i
-.PHONY : test.i
+src/Physics/physicsObject.i: src/Physics/physicsObject.cpp.i
+.PHONY : src/Physics/physicsObject.i
 
 # target to preprocess a source file
-test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test.cpp.i
-.PHONY : test.cpp.i
+src/Physics/physicsObject.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.i
+.PHONY : src/Physics/physicsObject.cpp.i
 
-test.s: test.cpp.s
-.PHONY : test.s
+src/Physics/physicsObject.s: src/Physics/physicsObject.cpp.s
+.PHONY : src/Physics/physicsObject.s
 
 # target to generate assembly for a file
-test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test.cpp.s
-.PHONY : test.cpp.s
+src/Physics/physicsObject.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.s
+.PHONY : src/Physics/physicsObject.cpp.s
+
+src/Physics/shape.o: src/Physics/shape.cpp.o
+.PHONY : src/Physics/shape.o
+
+# target to build an object file
+src/Physics/shape.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Physics/shape.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Physics/shape.cpp.o
+.PHONY : src/Physics/shape.cpp.o
+
+src/Physics/shape.i: src/Physics/shape.cpp.i
+.PHONY : src/Physics/shape.i
+
+# target to preprocess a source file
+src/Physics/shape.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Physics/shape.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Physics/shape.cpp.i
+.PHONY : src/Physics/shape.cpp.i
+
+src/Physics/shape.s: src/Physics/shape.cpp.s
+.PHONY : src/Physics/shape.s
+
+# target to generate assembly for a file
+src/Physics/shape.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/Physics/shape.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/src/Physics/shape.cpp.s
+.PHONY : src/Physics/shape.cpp.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_program.dir/build.make CMakeFiles/my_program.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+test/test.o: test/test.cpp.o
+.PHONY : test/test.o
+
+# target to build an object file
+test/test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/test.cpp.o
+.PHONY : test/test.cpp.o
+
+test/test.i: test/test.cpp.i
+.PHONY : test/test.i
+
+# target to preprocess a source file
+test/test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/test.cpp.i
+.PHONY : test/test.cpp.i
+
+test/test.s: test/test.cpp.s
+.PHONY : test/test.s
+
+# target to generate assembly for a file
+test/test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/test/test.cpp.s
+.PHONY : test/test.cpp.s
 
 # Help Target
 help:
@@ -292,21 +373,30 @@ help:
 	@echo "... test"
 	@echo "... my_program"
 	@echo "... tests"
-	@echo "... Physics/bunnyPhysics.o"
-	@echo "... Physics/bunnyPhysics.i"
-	@echo "... Physics/bunnyPhysics.s"
-	@echo "... Physics/physicsObject.o"
-	@echo "... Physics/physicsObject.i"
-	@echo "... Physics/physicsObject.s"
-	@echo "... Physics/shape.o"
-	@echo "... Physics/shape.i"
-	@echo "... Physics/shape.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... test.o"
-	@echo "... test.i"
-	@echo "... test.s"
+	@echo "... src/Engine/PointLight.o"
+	@echo "... src/Engine/PointLight.i"
+	@echo "... src/Engine/PointLight.s"
+	@echo "... src/Engine/inputManager.o"
+	@echo "... src/Engine/inputManager.i"
+	@echo "... src/Engine/inputManager.s"
+	@echo "... src/Engine/playerController.o"
+	@echo "... src/Engine/playerController.i"
+	@echo "... src/Engine/playerController.s"
+	@echo "... src/Physics/bunnyPhysics.o"
+	@echo "... src/Physics/bunnyPhysics.i"
+	@echo "... src/Physics/bunnyPhysics.s"
+	@echo "... src/Physics/physicsObject.o"
+	@echo "... src/Physics/physicsObject.i"
+	@echo "... src/Physics/physicsObject.s"
+	@echo "... src/Physics/shape.o"
+	@echo "... src/Physics/shape.i"
+	@echo "... src/Physics/shape.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... test/test.o"
+	@echo "... test/test.i"
+	@echo "... test/test.s"
 .PHONY : help
 
 

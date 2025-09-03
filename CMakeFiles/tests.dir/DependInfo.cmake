@@ -8,10 +8,13 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/ghann/GHGE/Physics/bunnyPhysics.cpp" "CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o" "gcc" "CMakeFiles/tests.dir/Physics/bunnyPhysics.cpp.o.d"
-  "/home/ghann/GHGE/Physics/physicsObject.cpp" "CMakeFiles/tests.dir/Physics/physicsObject.cpp.o" "gcc" "CMakeFiles/tests.dir/Physics/physicsObject.cpp.o.d"
-  "/home/ghann/GHGE/Physics/shape.cpp" "CMakeFiles/tests.dir/Physics/shape.cpp.o" "gcc" "CMakeFiles/tests.dir/Physics/shape.cpp.o.d"
-  "/home/ghann/GHGE/test.cpp" "CMakeFiles/tests.dir/test.cpp.o" "gcc" "CMakeFiles/tests.dir/test.cpp.o.d"
+  "/home/ghann/GHGE/src/Engine/PointLight.cpp" "CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o" "gcc" "CMakeFiles/tests.dir/src/Engine/PointLight.cpp.o.d"
+  "/home/ghann/GHGE/src/Engine/inputManager.cpp" "CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o" "gcc" "CMakeFiles/tests.dir/src/Engine/inputManager.cpp.o.d"
+  "/home/ghann/GHGE/src/Engine/playerController.cpp" "CMakeFiles/tests.dir/src/Engine/playerController.cpp.o" "gcc" "CMakeFiles/tests.dir/src/Engine/playerController.cpp.o.d"
+  "/home/ghann/GHGE/src/Physics/bunnyPhysics.cpp" "CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o" "gcc" "CMakeFiles/tests.dir/src/Physics/bunnyPhysics.cpp.o.d"
+  "/home/ghann/GHGE/src/Physics/physicsObject.cpp" "CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o" "gcc" "CMakeFiles/tests.dir/src/Physics/physicsObject.cpp.o.d"
+  "/home/ghann/GHGE/src/Physics/shape.cpp" "CMakeFiles/tests.dir/src/Physics/shape.cpp.o" "gcc" "CMakeFiles/tests.dir/src/Physics/shape.cpp.o.d"
+  "/home/ghann/GHGE/test/test.cpp" "CMakeFiles/tests.dir/test/test.cpp.o" "gcc" "CMakeFiles/tests.dir/test/test.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -69,83 +69,131 @@ include CMakeFiles/my_program.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/my_program.dir/flags.make
 
-CMakeFiles/my_program.dir/main.cpp.o: CMakeFiles/my_program.dir/flags.make
-CMakeFiles/my_program.dir/main.cpp.o: main.cpp
-CMakeFiles/my_program.dir/main.cpp.o: CMakeFiles/my_program.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/my_program.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_program.dir/main.cpp.o -MF CMakeFiles/my_program.dir/main.cpp.o.d -o CMakeFiles/my_program.dir/main.cpp.o -c /home/ghann/GHGE/main.cpp
+CMakeFiles/my_program.dir/src/main.cpp.o: CMakeFiles/my_program.dir/flags.make
+CMakeFiles/my_program.dir/src/main.cpp.o: src/main.cpp
+CMakeFiles/my_program.dir/src/main.cpp.o: CMakeFiles/my_program.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/my_program.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_program.dir/src/main.cpp.o -MF CMakeFiles/my_program.dir/src/main.cpp.o.d -o CMakeFiles/my_program.dir/src/main.cpp.o -c /home/ghann/GHGE/src/main.cpp
 
-CMakeFiles/my_program.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_program.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/main.cpp > CMakeFiles/my_program.dir/main.cpp.i
+CMakeFiles/my_program.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_program.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/main.cpp > CMakeFiles/my_program.dir/src/main.cpp.i
 
-CMakeFiles/my_program.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_program.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/main.cpp -o CMakeFiles/my_program.dir/main.cpp.s
+CMakeFiles/my_program.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_program.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/main.cpp -o CMakeFiles/my_program.dir/src/main.cpp.s
 
-CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.o: CMakeFiles/my_program.dir/flags.make
-CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.o: Physics/bunnyPhysics.cpp
-CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.o: CMakeFiles/my_program.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.o -MF CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.o.d -o CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.o -c /home/ghann/GHGE/Physics/bunnyPhysics.cpp
+CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.o: CMakeFiles/my_program.dir/flags.make
+CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.o: src/Engine/PointLight.cpp
+CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.o: CMakeFiles/my_program.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.o -MF CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.o.d -o CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.o -c /home/ghann/GHGE/src/Engine/PointLight.cpp
 
-CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/Physics/bunnyPhysics.cpp > CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.i
+CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Engine/PointLight.cpp > CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.i
 
-CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/Physics/bunnyPhysics.cpp -o CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.s
+CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Engine/PointLight.cpp -o CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.s
 
-CMakeFiles/my_program.dir/Physics/physicsObject.cpp.o: CMakeFiles/my_program.dir/flags.make
-CMakeFiles/my_program.dir/Physics/physicsObject.cpp.o: Physics/physicsObject.cpp
-CMakeFiles/my_program.dir/Physics/physicsObject.cpp.o: CMakeFiles/my_program.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/my_program.dir/Physics/physicsObject.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_program.dir/Physics/physicsObject.cpp.o -MF CMakeFiles/my_program.dir/Physics/physicsObject.cpp.o.d -o CMakeFiles/my_program.dir/Physics/physicsObject.cpp.o -c /home/ghann/GHGE/Physics/physicsObject.cpp
+CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.o: CMakeFiles/my_program.dir/flags.make
+CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.o: src/Engine/inputManager.cpp
+CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.o: CMakeFiles/my_program.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.o -MF CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.o.d -o CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.o -c /home/ghann/GHGE/src/Engine/inputManager.cpp
 
-CMakeFiles/my_program.dir/Physics/physicsObject.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_program.dir/Physics/physicsObject.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/Physics/physicsObject.cpp > CMakeFiles/my_program.dir/Physics/physicsObject.cpp.i
+CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Engine/inputManager.cpp > CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.i
 
-CMakeFiles/my_program.dir/Physics/physicsObject.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_program.dir/Physics/physicsObject.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/Physics/physicsObject.cpp -o CMakeFiles/my_program.dir/Physics/physicsObject.cpp.s
+CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Engine/inputManager.cpp -o CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.s
 
-CMakeFiles/my_program.dir/Physics/shape.cpp.o: CMakeFiles/my_program.dir/flags.make
-CMakeFiles/my_program.dir/Physics/shape.cpp.o: Physics/shape.cpp
-CMakeFiles/my_program.dir/Physics/shape.cpp.o: CMakeFiles/my_program.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/my_program.dir/Physics/shape.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_program.dir/Physics/shape.cpp.o -MF CMakeFiles/my_program.dir/Physics/shape.cpp.o.d -o CMakeFiles/my_program.dir/Physics/shape.cpp.o -c /home/ghann/GHGE/Physics/shape.cpp
+CMakeFiles/my_program.dir/src/Engine/playerController.cpp.o: CMakeFiles/my_program.dir/flags.make
+CMakeFiles/my_program.dir/src/Engine/playerController.cpp.o: src/Engine/playerController.cpp
+CMakeFiles/my_program.dir/src/Engine/playerController.cpp.o: CMakeFiles/my_program.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/my_program.dir/src/Engine/playerController.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_program.dir/src/Engine/playerController.cpp.o -MF CMakeFiles/my_program.dir/src/Engine/playerController.cpp.o.d -o CMakeFiles/my_program.dir/src/Engine/playerController.cpp.o -c /home/ghann/GHGE/src/Engine/playerController.cpp
 
-CMakeFiles/my_program.dir/Physics/shape.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_program.dir/Physics/shape.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/Physics/shape.cpp > CMakeFiles/my_program.dir/Physics/shape.cpp.i
+CMakeFiles/my_program.dir/src/Engine/playerController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_program.dir/src/Engine/playerController.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Engine/playerController.cpp > CMakeFiles/my_program.dir/src/Engine/playerController.cpp.i
 
-CMakeFiles/my_program.dir/Physics/shape.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_program.dir/Physics/shape.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/Physics/shape.cpp -o CMakeFiles/my_program.dir/Physics/shape.cpp.s
+CMakeFiles/my_program.dir/src/Engine/playerController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_program.dir/src/Engine/playerController.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Engine/playerController.cpp -o CMakeFiles/my_program.dir/src/Engine/playerController.cpp.s
+
+CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.o: CMakeFiles/my_program.dir/flags.make
+CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.o: src/Physics/bunnyPhysics.cpp
+CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.o: CMakeFiles/my_program.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.o -MF CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.o.d -o CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.o -c /home/ghann/GHGE/src/Physics/bunnyPhysics.cpp
+
+CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Physics/bunnyPhysics.cpp > CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.i
+
+CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Physics/bunnyPhysics.cpp -o CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.s
+
+CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.o: CMakeFiles/my_program.dir/flags.make
+CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.o: src/Physics/physicsObject.cpp
+CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.o: CMakeFiles/my_program.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.o -MF CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.o.d -o CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.o -c /home/ghann/GHGE/src/Physics/physicsObject.cpp
+
+CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Physics/physicsObject.cpp > CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.i
+
+CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Physics/physicsObject.cpp -o CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.s
+
+CMakeFiles/my_program.dir/src/Physics/shape.cpp.o: CMakeFiles/my_program.dir/flags.make
+CMakeFiles/my_program.dir/src/Physics/shape.cpp.o: src/Physics/shape.cpp
+CMakeFiles/my_program.dir/src/Physics/shape.cpp.o: CMakeFiles/my_program.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/my_program.dir/src/Physics/shape.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/my_program.dir/src/Physics/shape.cpp.o -MF CMakeFiles/my_program.dir/src/Physics/shape.cpp.o.d -o CMakeFiles/my_program.dir/src/Physics/shape.cpp.o -c /home/ghann/GHGE/src/Physics/shape.cpp
+
+CMakeFiles/my_program.dir/src/Physics/shape.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/my_program.dir/src/Physics/shape.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ghann/GHGE/src/Physics/shape.cpp > CMakeFiles/my_program.dir/src/Physics/shape.cpp.i
+
+CMakeFiles/my_program.dir/src/Physics/shape.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/my_program.dir/src/Physics/shape.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ghann/GHGE/src/Physics/shape.cpp -o CMakeFiles/my_program.dir/src/Physics/shape.cpp.s
 
 # Object files for target my_program
 my_program_OBJECTS = \
-"CMakeFiles/my_program.dir/main.cpp.o" \
-"CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.o" \
-"CMakeFiles/my_program.dir/Physics/physicsObject.cpp.o" \
-"CMakeFiles/my_program.dir/Physics/shape.cpp.o"
+"CMakeFiles/my_program.dir/src/main.cpp.o" \
+"CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.o" \
+"CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.o" \
+"CMakeFiles/my_program.dir/src/Engine/playerController.cpp.o" \
+"CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.o" \
+"CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.o" \
+"CMakeFiles/my_program.dir/src/Physics/shape.cpp.o"
 
 # External object files for target my_program
 my_program_EXTERNAL_OBJECTS =
 
-my_program: CMakeFiles/my_program.dir/main.cpp.o
-my_program: CMakeFiles/my_program.dir/Physics/bunnyPhysics.cpp.o
-my_program: CMakeFiles/my_program.dir/Physics/physicsObject.cpp.o
-my_program: CMakeFiles/my_program.dir/Physics/shape.cpp.o
-my_program: CMakeFiles/my_program.dir/build.make
-my_program: CMakeFiles/my_program.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable my_program"
+bin/my_program: CMakeFiles/my_program.dir/src/main.cpp.o
+bin/my_program: CMakeFiles/my_program.dir/src/Engine/PointLight.cpp.o
+bin/my_program: CMakeFiles/my_program.dir/src/Engine/inputManager.cpp.o
+bin/my_program: CMakeFiles/my_program.dir/src/Engine/playerController.cpp.o
+bin/my_program: CMakeFiles/my_program.dir/src/Physics/bunnyPhysics.cpp.o
+bin/my_program: CMakeFiles/my_program.dir/src/Physics/physicsObject.cpp.o
+bin/my_program: CMakeFiles/my_program.dir/src/Physics/shape.cpp.o
+bin/my_program: CMakeFiles/my_program.dir/build.make
+bin/my_program: CMakeFiles/my_program.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ghann/GHGE/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable bin/my_program"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/my_program.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/my_program.dir/build: my_program
+CMakeFiles/my_program.dir/build: bin/my_program
 .PHONY : CMakeFiles/my_program.dir/build
 
 CMakeFiles/my_program.dir/clean:

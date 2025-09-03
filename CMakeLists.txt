@@ -8,29 +8,45 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Compiler flags
 add_compile_options(-Wall -O2)
 
-# Include directories
+# Output all binaries to build/bin/
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+# Include GLM and other external headers
 include_directories(/usr/include/glm)
 
-# Add source directories
-set(SRC_DIRS
-    src
-    Tools
-    Engine
-    Physics
+# Define source directories
+set(SRC_DIR "${CMAKE_SOURCE_DIR}/src")
+set(SRC_ENGINE "${SRC_DIR}/Engine")
+set(SRC_PHYSICS "${SRC_DIR}/Physics")
+set(SRC_TOOLS "${SRC_DIR}/Tools")
+
+# Gather all .cpp files
+file(GLOB_RECURSE PROJECT_SOURCES
+    ${SRC_ENGINE}/*.cpp
+    ${SRC_PHYSICS}/*.cpp
+    ${SRC_TOOLS}/*.cpp
 )
 
-# Gather all .cpp files from source directories
-file(GLOB_RECURSE PROJECT_SOURCES ${SRC_DIRS}/*.cpp)
+# Add main executable
+add_executable(my_program
+    ${SRC_DIR}/main.cpp
+    ${PROJECT_SOURCES}
+)
 
-# Main executable
-add_executable(my_program main.cpp ${PROJECT_SOURCES})
+# Link necessary libraries
 target_link_libraries(my_program GL GLU SDL2 GLEW)
 
-# Test executable
-add_executable(tests test.cpp ${PROJECT_SOURCES})
+set(TEST_DIR "${CMAKE_SOURCE_DIR}/test")
+
+# Add test executable
+add_executable(tests
+	${TEST_DIR}/test.cpp
+    ${PROJECT_SOURCES}
+)
+
 target_link_libraries(tests GL GLU SDL2 GLEW)
 
-# Add 'make test' support
+# Enable testing support
 enable_testing()
 add_test(NAME RunTests COMMAND tests)
 

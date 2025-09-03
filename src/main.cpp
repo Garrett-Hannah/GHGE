@@ -124,11 +124,11 @@ int main(int argc, char* argv[]) {
     std::vector<Shader*> shaders(2);
 
 
-    shaders[0] = new Shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl");
+    shaders[0] = new Shader("vertex_shader.glsl", "fragment_shader.glsl");
 
     //Push back shaders for background.
     //Then setup the background vbo
-    shaders[1] = (new Shader("shaders/bgVshader.glsl", "shaders/bgFshader.glsl"));
+    shaders[1] = (new Shader("bgVshader.glsl", "bgFshader.glsl"));
     
     std::cout << (shaders[1] != nullptr) << std::endl;
 
