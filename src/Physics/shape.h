@@ -3,6 +3,7 @@
  *
  *  What is the shape class. its just a shorthand for a few things. 
  *
+ * 
  *
  *
  *
@@ -16,7 +17,7 @@
 #ifndef SHAPE_H
 #define SHAPE_H 
 
-namespace GHGE
+namespace BUN
 {
     struct cube
     {
