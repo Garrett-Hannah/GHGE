@@ -30,7 +30,7 @@
 
 #pragma once
 
-#include "../src/Mesh.h"
+#include "../Visual/Mesh.h"
 
 class ObjReader
 {

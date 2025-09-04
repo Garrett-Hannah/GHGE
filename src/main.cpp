@@ -8,9 +8,9 @@
 #include <iostream>
 #include <cmath>
 
-#include "src/Renderer.h"
-#include "src/Mesh.h"
-#include "src/Camera.h"
+#include "Visual/Renderer.h"
+#include "Visual/Mesh.h"
+#include "Visual/Camera.h"
 
 #include "Engine/inputManager.h"
 #include "Engine/playerController.h"
@@ -153,7 +153,7 @@ int main(int argc, char* argv[]) {
     //as a mesh to begin with?
 
     ObjReader r = ObjReader();    
-	r.openObjFile("data/teapot.obj");
+	r.openObjFile("data/models/teapot.obj");
 	r.read();
     
     std::vector<Vertex> verts;

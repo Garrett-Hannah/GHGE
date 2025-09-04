@@ -1,5 +1,5 @@
-#include "Tools/ObjFileReader.h"
-#include "Physics/shape.h"
+#include "../src/Tools/ObjFileReader.h"
+#include "../src/Physics/shape.h"
 #include <stdexcept>
 
 void writeVec(const Vertex &v)
@@ -66,7 +66,7 @@ class shapeTests
 
     bool testClass()
     {
-        using namespace GHGE; 
+        using namespace BUN; 
         sphere s1 = {{0.0f, 0.0f, 0.0f}, 2.5f};
         sphere s2 = {{0.0f, 0.67f, 0.0f}, 2.5f};
         sphere s3 = {{0.0f, 2.51f, 0.0f}, 2.5f};

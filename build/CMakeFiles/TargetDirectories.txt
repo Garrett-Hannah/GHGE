@@ -1,0 +1,5 @@
+/home/ghann/GHGE/build/CMakeFiles/my_program.dir
+/home/ghann/GHGE/build/CMakeFiles/tests.dir
+/home/ghann/GHGE/build/CMakeFiles/test.dir
+/home/ghann/GHGE/build/CMakeFiles/edit_cache.dir
+/home/ghann/GHGE/build/CMakeFiles/rebuild_cache.dir

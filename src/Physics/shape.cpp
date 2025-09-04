@@ -4,7 +4,7 @@
 
 #include "shape.h"
 
-namespace GHGE{
+namespace BUN{
     //Function for colliding
     bool collide(const sphere& s1, const sphere& s2)
     {

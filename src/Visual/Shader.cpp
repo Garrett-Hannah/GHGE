@@ -5,11 +5,11 @@ Shader::Shader(const std::string &vertexPath, const std::string& fragmentPath)
 {
 	std::string defaultPath = "data/shaders/";
 
-	vertexPath = defaultPath.append(vertexPath);
-	fragmentPath = defaultPath.append(fragmentPath);
+    std::string appVertPath = defaultPath.copy().append(vertexPath);
+    std::string appFragPath = defaultPath.copy().append(fragmentPath);
 
-	std::cout << vertexPath << std::endl;
-	std::cout <<fragmentPath << std::endl;
+	std::cout << appVertPath << std::endl;
+	std::cout << appFragPath << std::endl;
 
 
     std::string vertexCode;
@@ -25,8 +25,8 @@ Shader::Shader(const std::string &vertexPath, const std::string& fragmentPath)
 
 	try
 	{
-		vShaderFile.open(vertexPath);
-		fShaderFile.open(fragmentPath);
+		vShaderFile.open(appVertPath);
+		fShaderFile.open(appFragPath);
 		std::stringstream vShaderStream, fShaderStream;
 
 		vShaderStream << vShaderFile.rdbuf();
