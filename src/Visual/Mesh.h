@@ -9,6 +9,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "Shader.h"
+#include "../Tools/ObjFileReader.h"
 
 struct Vertex {
 	glm::vec3 Position;
@@ -45,7 +46,9 @@ class Mesh {
 		void calculateNormals();
 
 		void setupMesh();
-	private:
+	
+        void openMeshFile(const std::string &filepath, const ObjReader& objReader); //Generic function for opening a .xxx filepath and doing something w that.
+    private:
 		
 };
 

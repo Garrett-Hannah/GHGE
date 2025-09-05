@@ -11,6 +11,7 @@
 #include "Visual/Renderer.h"
 #include "Visual/Mesh.h"
 #include "Visual/Camera.h"
+#include "Visual/Background.h"
 
 #include "Engine/inputManager.h"
 #include "Engine/playerController.h"
@@ -24,85 +25,15 @@ float dt = 0.0;
 GLuint SCR_WIDTH, SCR_HEIGHT;
 
 
-//Right here is the background data.
-//First two floats are The position,
-//Color data is the third, fourth fifth.
-//Each line is a new vertex.
-//All this does is make a rectangle on the screen.
-GLfloat verts[] = 
-{
-		-1.0f, 1.0f,  0.90f, 0.90f, 0.995f,
-		-1.0f, -1.0f, 0.5f, 0.5f, 0.750f,
-		1.0f, -1.0f,  0.25f, 0.25f, 0.90f, 
-		1.0f, 1.0f,   0.90f, 0.90f, 0.995f
-};
-
-//This is the indices essentailly it draws in this order.
-GLuint inds[] = 
-{
-		0, 1, 2,
-		0, 2, 3	
-};
 
 //this is a VAO, for i think the backround value.
 //It shouldnt be a global variable.
 unsigned int VAO;
 
-void bgSetup()
-{
-    //Create unsigned ints
-	unsigned int VBO, EBO;
-	glGenVertexArrays(1, &VAO);
-	glGenBuffers(1, &VBO);
-	glGenBuffers(1, &EBO);
-
-	// Bind VAO
-	glBindVertexArray(VAO);
-	
-	// Bind VBO and buffer the vertex data
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verts), verts, GL_STATIC_DRAW);
-	
-	// Bind EBO and buffer the indices
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(inds), inds, GL_STATIC_DRAW);
-		
-	// Vertex attribute: position (location = 0 in shader)
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	// Vertex attribute: color (location = 1 in shader)
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
-	glEnableVertexAttribArray(1);
-
-	// Unbind VAO
-	glBindVertexArray(0);
-}
-
-//Overall i should be using maybe render layers
-//of some sorts. Until then the hard-coded background
-//remains. :(
-void bgDraw(Shader* shader)
-{
-	glDisable(GL_DEPTH_TEST);
-    glDepthMask(GL_FALSE);
-
-	if(shader != nullptr)shader -> use();
-	else std::cout << "ERROR: SHADER NOT DEFINED" << std::endl;
-		
-	glBindVertexArray(VAO);
-
-	glDrawElements(GL_TRIANGLES, sizeof(inds) / sizeof(GLuint), GL_UNSIGNED_INT, 0);
-
-	glDepthMask(GL_TRUE);
-    glEnable(GL_DEPTH_TEST);
-	glBindVertexArray(0);
-}
-
-
 
 int main(int argc, char* argv[]) {
 
+    Background imgBackGround;
 
     //Enter program
 	std::cout << "Program entered!" << std::endl;
@@ -153,7 +84,7 @@ int main(int argc, char* argv[]) {
     //as a mesh to begin with?
 
     ObjReader r = ObjReader();    
-	r.openObjFile("data/models/teapot.obj");
+	r.openObjFile("data/models/cow.obj");
 	r.read();
     
     std::vector<Vertex> verts;
@@ -189,7 +120,8 @@ int main(int argc, char* argv[]) {
     */
 
     
-    bgSetup();
+    imgBackGround.bgSetup(VAO);
+
 
     //if(meshes[0] != nullptr) std::cout << "Meshes available." << std::endl;
 
@@ -225,6 +157,7 @@ int main(int argc, char* argv[]) {
     std::vector<GLuint> indices3 = {
         3, 1, 2, 2, 1, 0
     };
+    
 
     meshes.push_back( new Mesh( vertices3, indices3, textures) );
     
@@ -328,7 +261,7 @@ int main(int argc, char* argv[]) {
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
         //Draw the background.
-        bgDraw(shaders[1]);
+        imgBackGround.renderBG(shaders[1], VAO);
         
         
         //Final step. render the meshes.

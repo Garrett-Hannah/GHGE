@@ -18,4 +18,10 @@ namespace BUN{
 
         return distSquared <= (s2.radius + s1.radius);
     }
+
+    void drawSphere(const sphere& s)
+    {
+        
+
+    }
 }

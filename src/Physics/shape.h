@@ -50,6 +50,7 @@ namespace BUN
 
     bool collide(const sphere& s1, const sphere& s2);
     void drawCube(const cube& c);    
+    void drawSphere(const sphere& s);
 }
 
 #endif

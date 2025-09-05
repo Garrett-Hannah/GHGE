@@ -498,7 +498,8 @@ CMakeFiles/my_program.dir/src/main.cpp.o: /home/ghann/GHGE/src/main.cpp \
  /home/ghann/GHGE/src/Visual/Window.h \
  /home/ghann/GHGE/src/Visual/../Engine/PointLight.h \
  /home/ghann/GHGE/src/Visual/Mesh.h /home/ghann/GHGE/src/Visual/Camera.h \
- /home/ghann/GHGE/src/Engine/inputManager.h \
+ /home/ghann/GHGE/src/Visual/Background.h /usr/include/c++/13/array \
+ /usr/include/c++/13/compare /home/ghann/GHGE/src/Engine/inputManager.h \
  /home/ghann/GHGE/src/Engine/inputDefinitions.h \
  /home/ghann/GHGE/src/Engine/playerController.h \
  /home/ghann/GHGE/src/Engine/inputManager.h \

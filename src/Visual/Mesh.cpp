@@ -88,3 +88,11 @@ void Mesh::Draw(Shader &shader)
 
 
 }
+
+void Mesh::OpenMeshFile(const std::string &filePath, const ObjReader &objReader)
+{
+    objReader.openObjFile(filePath);
+    objReader.read();
+
+
+}
